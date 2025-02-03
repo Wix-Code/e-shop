@@ -1,0 +1,63 @@
+.sidebar{
+  width: 30%;
+  
+}
+.sides{
+  border: 1px solid var(--light);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.side2{
+  border-bottom: 1px solid var(--light);
+  border-top: 1px solid var(--light);
+  padding: 20px 0px;
+}
+.side_btn{
+  width: 100%;
+  padding: 15px 20px;
+  font-size: 16px;
+  border-radius: 35px;
+  display: flex;
+  color: var(--secondary);
+  align-items: center;
+  gap: 20px;
+  cursor: pointer;
+}
+.side_btn:hover{
+  background: var(--light-pink);
+}
+.side_btn button{
+  font-size: 15px;
+}
+.side1{
+  padding-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
+.side1 img{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.side1 span{
+  font-size: 13px;
+  color: var(--secondary);
+}
+.side3{
+  padding-top: 20px;
+}
+.side3 button{
+  color: #ffffff;
+  background: var(--primary);
+  width: 100%;
+  padding: 15px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 30px;
+}

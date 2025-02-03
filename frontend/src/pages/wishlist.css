@@ -1,0 +1,10 @@
+.wishlist{
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.wish{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}

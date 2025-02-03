@@ -1,0 +1,49 @@
+.brands{
+  max-width: 1150px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 40px 0px;
+}
+.brand_div{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.brand_cat{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+}
+.brand_cat p{
+  color: var(--secondary);
+  cursor: pointer;
+  transition: all 0.5s;
+}
+ .brand_cat p:hover{
+  color: var(--gray-dark);
+}
+.brand{
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+.brand-logo{
+  width: 100%;
+  border: 0.1px solid #f7f7f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+  cursor: pointer;
+  padding: 40px 0px;
+  transition: all 0.5s;
+}
+.brand-logo:hover{
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+}
+.brand-logo img{
+  width: 60px;
+}

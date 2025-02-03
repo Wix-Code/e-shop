@@ -1,0 +1,78 @@
+.compare{
+  max-width: 1150px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.compare1{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.compare2{
+  display: flex;
+  border: 1px solid var(--light);
+  flex-direction: column;
+}
+.compare_reset{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.compare_reset h5{
+  padding: 10px 20px;
+  background: var(--light-pink);
+  cursor: pointer;
+  border-radius: 30px;
+  color: var(--primary);
+  transition: all 0.5s;
+}
+.compare_reset h5:hover{
+  background: var(--primary);
+  color: #ffffff;
+}
+.compare_img img{
+  width: 100%;
+  object-fit: cover;
+  cursor: pointer;
+  height: 200px;
+  transition: 0.5s;
+}
+.compare_img{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 30px;
+  border-bottom: 1px solid var(--light);
+}
+.compare_img h3{
+  font-size: 15px;
+  line-height: 22px;
+  color: var(--soft-dark);
+}
+.compare_img p{
+  color: var(--secondary);
+  font-size: 14px;
+}
+.compare_img span{
+  font-size: 15px;
+}
+.compare_img h4{
+  color: var(--primary);
+}
+.compare_btn{
+  padding: 30px;
+}
+.compare_btn button{
+  padding: 15px;
+  background: var(--dark);
+  width: 100%;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.5s;
+  color: #ffffff;
+}
+.compare_btn button:hover{
+  background: var(--soft-dark);
+}

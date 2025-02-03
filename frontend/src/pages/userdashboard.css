@@ -1,0 +1,10 @@
+.user_dash{
+  display: flex;
+  max-width: 1150px;
+  margin: auto;
+  padding: 40px 0px;
+  gap: 30px;
+}
+.user_dash_body{
+  width: 75%;
+}

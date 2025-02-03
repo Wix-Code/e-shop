@@ -1,0 +1,203 @@
+.item_single{
+  padding: 40px 0px;
+  max-width: 1150px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: auto;
+}
+.single_div{
+  display: flex;
+  gap: 40px;
+}
+.single1{
+  width: 40%;
+}
+.single1 img{
+  width: 100%;
+  height: 80%;
+  object-fit: cover;
+}
+.single2{
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 60%;
+}
+.sin_links{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.sin_links button{
+  width: 40px;
+  height: 35px;
+  cursor: pointer;
+  color: #ffffff;
+  background: #df8080;
+}
+.sin_links button a{
+  color: #ffffff;
+  font-size: 16px;
+}
+.sin_links button:nth-child(1){
+  color: #ffffff;
+  font-size: 16px;
+  background: var(--cyan);
+}
+.sin_links button:nth-child(2){
+  color: #ffffff;
+  font-size: 16px;
+  background: var(--indigo);
+}
+.sin_links button:nth-child(3){
+  color: #ffffff;
+  font-size: 16px;
+  background: var(--blue);
+}
+.sin_links button:nth-child(4){
+  color: #ffffff;
+  font-size: 16px;
+  background: var(--green);
+}
+.sin_com{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.single_com{
+  display: flex;
+  color: var(--soft-white);
+  align-items: center;
+  font-size: 14px;
+  gap: 10px;
+}
+.sin_brand{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.sin_rate{
+  display: flex;
+  gap: 10px;
+  color: var(--soft-white);
+  font-size: 15px;
+}
+.sin_btns{
+  display: flex;
+  gap: 20px;
+}
+.sin_cart{
+  width: 160px;
+  display: flex;
+  padding: 12px 0px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  cursor: pointer;
+  font-size: 14px;
+  background: var(--primary);
+}
+.sin_cart:nth-child(2){
+  background: var(--warning);
+}
+.sin_add{
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.sin_addto{
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+.sin_add p, .sin_brand p, .sin_total p{
+  color: var(--soft-white);
+  font-size: 14px;
+}
+.sin_addto button{
+  width: 40px;
+  height: 40px;
+  color: var(--soft-white);
+  cursor: pointer;
+  font-size: 14px;
+  background: var(--light);
+}
+.sin_total{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.sin_total h2{
+  color: var(--primary);
+}
+
+
+
+.review{
+  display: flex;
+  gap: 40px;
+}
+.top{
+  width: 25%;
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  gap: 40px;
+  border: 1px solid var(--light);
+}
+.top2{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.top1{
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.top_div{
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+.top_div p{
+  font-size: 14px;
+}
+.review_item{
+  display: flex;
+  gap: 20px;
+  cursor: pointer;
+  padding: 10px;
+  transition: all 0.5s;
+}
+.review_item:hover{
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+}
+.top_div p{
+  transition: 0.5s all;
+}
+.top_div p:hover{
+  color: var(--primary);
+}
+.review_item img{
+  width: 70px;
+  object-fit: cover;
+  height: 70px;
+}
+.top_div h4{
+  color: var(--primary);
+}
+.description{
+  border: 1px solid var(--light);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.description span{
+  font-size: 14px;
+}

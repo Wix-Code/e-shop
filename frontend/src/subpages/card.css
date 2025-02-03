@@ -1,0 +1,110 @@
+.card{
+  border: 0.1px solid var(--light);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  cursor: pointer;
+}
+.card:hover .card_img img{
+  transform: scaleX(1.05)
+}
+.card_img{
+  position: relative;
+  overflow: hidden;
+}
+.card_img:hover .card_wish{
+  right: 5px;
+}
+.card_img button{
+  position: absolute;
+  bottom: -40px;
+  left: 0px;
+  background: var(--dark);
+  color: #ffffff;
+  padding: 10px 15px;
+  width: 100%;
+  cursor: pointer;
+  transition: all ease 0.5s;
+}
+.card_img:hover button{
+  bottom: 0px;
+}
+.card_img h5{
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+  color: #ffffff;
+  background: var(--soft-dark);
+}
+.card_img button:hover{
+  background: var(--soft-dark);
+  color: #fff;
+}
+.card_img img{
+  width: 100%;
+  transition: all 0.5s;
+  object-fit: cover;
+  height: 100%;
+}
+.card_wish{
+  position: absolute;
+  top: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  right: -35px;
+  transition: all ease 0.5s;
+  overflow: auto;
+}
+.card_wish p{
+  background: #ffffff;
+  color: var(--secondary);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  font-size: 16px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+.card_wish p:hover{
+  background: var(--primary);
+  color: #fff;
+}
+.card span{
+  color: var(--secondary);
+  font-size: 13px;
+  text-align: center;
+  transition: all 0.5s;
+}
+.card h3{
+  font-size: 16px;
+  color: var(--primary);
+  text-align: center;
+}
+.card span:hover{
+  color: var(--primary);
+}
+.card_open{
+  display: flex;
+  position: absolute;
+  align-items: center;
+  z-index: 90;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  background: #ffffff;
+  border: 2px solid black;
+  width: 100%;
+  justify-content: center;
+  height: 100vh;
+}
+.card_open img{
+  width: 200px;
+}

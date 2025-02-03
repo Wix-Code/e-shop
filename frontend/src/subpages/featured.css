@@ -1,0 +1,15 @@
+.featured{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.featured h1{
+  font-size: 20px;
+}
+.slick-prev{
+  color: blue;
+  left: 0px;
+}
