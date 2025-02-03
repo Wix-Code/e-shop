@@ -76,3 +76,13 @@
 .compare_btn button:hover{
   background: var(--soft-dark);
 }
+.no_compare{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 40px;
+}
+.no_compare img{
+  width: 300px;
+}

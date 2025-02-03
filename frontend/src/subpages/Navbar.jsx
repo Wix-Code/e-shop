@@ -8,6 +8,7 @@ import { FaCartShopping, FaCodeCompare } from "react-icons/fa6";
 import { Link, useLocation} from 'react-router-dom';
 import { createStore } from '../libs/context';
 import { RiComputerLine } from "react-icons/ri";
+import { CiFaceFrown } from "react-icons/ci";
 import { LiaTimesSolid } from "react-icons/lia";
 
 const Navbar = () => {
@@ -156,31 +157,41 @@ const Navbar = () => {
               <p>({cart.length} Items)</p>
               {
                 cartOpen && (
-                  <div className="cart_sel">
-                    <h3>Cart Items</h3>
-                    <hr />
-                    <div className="open_cart">
-                    {cart.map((item) => (
-                      <div key={item.id} className="car_del">
-                        <img src={item.image} alt="" />
-                        <div className="sel_price">
-                          <h5>{item.name}</h5>
-                          <p>&#8358;{new Intl.NumberFormat('en-US').format(item.price)}</p>
-                        </div>
-                        <LiaTimesSolid style={{fontSize: "30px"}}/>
-                      </div>
-                    ))}
-                    </div>
-                    <hr />
-                    <div className="cart_tot">
-                      <p>Sub Total</p>
-                      <h2>&#8358;{new Intl.NumberFormat('en-US').format(cart.reduce((acc, curr) => acc + curr.price, 0))}</h2>
-                    </div>
-                    <hr />
-                    <div className="cart_lin">
-                      <Link to="/cart"><button>View Cart</button></Link>
-                      <Link to="/checkout"><button>Checkout</button></Link>
-                    </div>
+                  <div className="cart_scroll">
+                    {
+                      cart.length === 0 ? (<div className='nav_face'>
+                        <CiFaceFrown style={{fontSize: "50px"}} />
+                        <h3>Your Cart is empty</h3>
+                      </div>) :
+                        (
+                          <div className='cart_sel'> 
+                            <h3>Cart Items</h3>
+                            <hr />
+                            <div className="open_cart">
+                            {cart.map((item) => (
+                              <div key={item.id} className="car_del">
+                                <img src={item.image} alt="" />
+                                <div className="sel_price">
+                                  <h5>{item.name}</h5>
+                                  <p>&#8358;{new Intl.NumberFormat('en-US').format(item.price)}</p>
+                                </div>
+                                <LiaTimesSolid style={{fontSize: "30px"}}/>
+                              </div>
+                            ))}
+                            </div>
+                            <hr />
+                            <div className="cart_tot">
+                              <p>Sub Total</p>
+                              <h2>&#8358;{new Intl.NumberFormat('en-US').format(cart.reduce((acc, curr) => acc + curr.price, 0))}</h2>
+                            </div>
+                            <hr />
+                            <div className="cart_lin">
+                              <Link to="/cart"><button>View Cart</button></Link>
+                              <Link to="/checkout"><button>Checkout</button></Link>
+                            </div>
+                          </div>
+                      )
+                    }
                   </div>
                 )
               }

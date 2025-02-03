@@ -288,3 +288,19 @@
   height: 1px;
   background:  var(--light);
 }
+.nav_face{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  position: absolute;
+  align-items: center;
+  padding-top: 50px;
+  top: 50px;
+  right: 0px;
+  padding: 20px;
+  color: #363636;
+  background: #ffffff;
+  width: 300px;
+  border: 1px solid var(--light);
+}

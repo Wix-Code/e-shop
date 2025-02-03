@@ -12,7 +12,9 @@ const Wishlist = () => {
     <div className='wishlist'>
       <h3>Wishlist</h3>
       {
-        wishlist.length === 0 ? <h4>Your wishlist is empty.</h4> :
+        wishlist.length === 0 ? <div className='no_compare'>
+        <img src="https://ebeosi.com.ng/public/assets/img/nothing.svg" alt="" />
+        <h3>Your Wishlist is empty</h3></div> :
         <div className="wish">
           {
             wishlist.map((item) => {

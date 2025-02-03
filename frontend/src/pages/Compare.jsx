@@ -15,7 +15,9 @@ const Compare = () => {
       </div>
       {
         compare.length === 0 ?
-        <h4>No items to compare</h4> :
+          <div className='no_compare'>
+            <img src="https://ebeosi.com.ng/public/assets/img/nothing.svg" alt="" />
+            <h3>Your comparison list is empty</h3></div> :
         <div className="compare1">
           {
             compare.map((item) => {
