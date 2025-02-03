@@ -8,6 +8,7 @@ import ItemSinglePage from './pages/ItemSinglePage'
 import Compare from './pages/Compare'
 import Wishlist from './pages/Wishlist'
 import PrivateRoute from './pages/UserDashBoard'
+import About from './pages/About'
 
 const Rout = () => {
   return (
@@ -17,8 +18,7 @@ const Rout = () => {
       <Route path="/store" element={<Store />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/product/:id" element={<ItemSinglePage />} />
-      
-    
+      <Route path="/about-us" element={<About />} />
       <Route path="/*" element={<PrivateRoute />} />
     </Routes>
   )

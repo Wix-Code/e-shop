@@ -1,0 +1,35 @@
+.about{
+  max-width: 1150px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 30px 0px;
+}
+.about1{
+  display: flex;
+  color: #1a1a1a;
+  justify-content: space-between;
+  align-items: center;
+}
+.abou{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+.abou p{
+  color: var(--secondary);
+}
+.about2{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border: 1px solid #f8f8f8;
+  padding: 30px;
+}
+.about2 p{
+  line-height: 21px;
+  font-size: 15px;
+  color: var(--dark);
+}

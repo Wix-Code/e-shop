@@ -5,14 +5,15 @@
 }
 .banner img{
   width: 100%;
-  height: 170px;
+  height: 180px;
   object-fit: cover;
   cursor: pointer;
   transition: 0.5s;
 }
 .ban{
   width: 100%;
+  overflow: hidden;
 }
 .banner img:hover{
-  transform: scaleX(1.05)
+  transform: scale(1.05)
 }
