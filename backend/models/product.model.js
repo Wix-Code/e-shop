@@ -16,11 +16,17 @@ const productSchema = new mongoose.Schema({
   cat: {
     type: String, required: true
   },
-  furnish: {
+  brand: {
     type: String, required: true
   },
   img: {
     type: Array, required: true
+  },
+  rate: {
+    type: Array, required: false
+  },
+  inStock: {
+    type: Boolean, required: true
   },
   userId: {
     type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true
