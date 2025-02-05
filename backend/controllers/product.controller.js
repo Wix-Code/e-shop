@@ -8,7 +8,7 @@ export const createProduct = async (req, res) => {
   }
   try {
 
-    const product = await Product.create({ userId, title, description, cat, brand, img, inStock, price });
+    const product = new Product.create({ userId, title, description, cat, brand, img, inStock, price });
     await product.save();
     res.status(400).json({ success: true, message: "Product created successfully", product });
     
@@ -28,10 +28,16 @@ export const getAllProducts = async () => {
   }
 }
 
-export const getSingleproduct = async () => {
+export const getSingleproduct = async (req, res) => {
+  const { id } = req.params;
   try {
-    
+    const product = await Product.findById(id);
+    if (!product) {
+      return res.status(404).json({ success: false, message: "Product not found" });
+    }
+    res.status(200).json({ success: true, message: "Product fetched", product });
   } catch (error) {
-    
+    console.log(error);
+    res.status(500).json({ success: false, message: "Failed to fetch product" });
   }
 }
