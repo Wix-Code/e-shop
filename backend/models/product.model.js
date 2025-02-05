@@ -10,15 +10,6 @@ const productSchema = new mongoose.Schema({
   price: {
     type: Number, required: true
   },
-  dPrice: {
-    type: Number, required: true
-  },
-  bathroom: {
-    type: Number, required: true
-  },
-  bedroom: {
-    type: Number, required: true
-  },
   type: {
     type: String, required: true
   },
