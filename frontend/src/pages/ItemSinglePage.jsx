@@ -20,7 +20,11 @@ const ItemSinglePage = () => {
           <div className="set_img1">
             {
               image.map((img, i) => {
-                return <img key={i} src={img} alt="" onClick={() => setImg(img)} style={{ cursor: "pointer", border: setImg === img ? "2px solid blue" : "" }} />
+                return (
+                  <div className={setImg === img ? "active" : "img_set" }>
+                    <img key={i} src={img} alt="" onClick={() => setImg(img)} className={setImg === img ? "select" : "" } />
+                  </div>
+                )
               })
             }
           </div>
