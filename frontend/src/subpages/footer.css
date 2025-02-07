@@ -23,6 +23,42 @@
 .foot1 h4, .foot2 h4, .foot3 h4{
   color: var(--gray);
 }
+.foot4,.foot_links{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.foot_links h4{
+  color: var(--gray);
+  text-transform: uppercase;
+}
+.foot_icons{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.foot_icons button{
+  width: 38px;
+  height: 38px;
+  background: var(--cyan);
+  border-radius: 50%;
+  display: flex;
+  cursor: pointer;
+  font-size: 18px;
+  transition: 0.5s all;
+  color: #ffffff;
+  justify-content: center;
+  align-items: center;
+}
+.foot_icons button:hover{
+  transform: translateY(-5px);
+}
+.foot_icons button:nth-child(2){
+  background: var(--blue);
+}
+.foot_icons button:nth-child(3){
+  background: purple;
+}
 .address{
   display: flex;
   flex-direction: column;
