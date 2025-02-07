@@ -1,4 +1,5 @@
 import mongoose from "mongoose"
+import Comment from "./comment.model.js";
 
 const productSchema = new mongoose.Schema({
   title: {
@@ -27,7 +28,9 @@ const productSchema = new mongoose.Schema({
   },
   userId: {
     type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true
-  }
+  },
+  comment: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }]
+  //comment: [ Comment ]
 }, { timestamps: true });
 
 const Product = mongoose.model('Product', productSchema);

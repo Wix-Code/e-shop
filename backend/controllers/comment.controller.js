@@ -3,7 +3,7 @@ import Comment from "../models/comment.model.js";
 export const comment = async (req, res) => {
   try {
     const { userId, productId, title } = req.body;
-    const comment = new Comment({ text, userId, productId });
+    const comment = new Comment({ title, userId, productId });
     await comment.save();
     res.status(201).json({ success: true, comment });
   } catch (error) {
