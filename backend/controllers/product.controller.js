@@ -1,4 +1,4 @@
-import Product from "../models/product.model";
+import Product from "../models/product.model.js";
 
 export const createProduct = async (req, res) => {
   const { userId, title, description, cat, brand, img, inStock, price } = req.body;
@@ -8,8 +8,8 @@ export const createProduct = async (req, res) => {
   }
   try {
 
-    const product = new Product.create({ userId, title, description, cat, brand, img, inStock, price });
-    await product.save();
+    const product = await Product.create({ userId, title, description, cat, brand, img, inStock, price });
+   // await product.save();
     res.status(400).json({ success: true, message: "Product created successfully", product });
     
   } catch (error) {
@@ -18,7 +18,7 @@ export const createProduct = async (req, res) => {
   }
 }
 
-export const getAllProducts = async () => {
+export const getAllProducts = async (req,res) => {
   try {
     const product = await Product.find({});
     res.status(200).json({success: true, message: "Products Fetched", product})

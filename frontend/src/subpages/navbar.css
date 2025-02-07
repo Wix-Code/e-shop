@@ -210,9 +210,9 @@
 .cart_btn{
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 20px;
   background: var(--warning);
-  padding: 14px 18px;
+  padding: 14px 10px;
   color: #ffffff;
   font-size: 14px;
   position: relative;
@@ -224,6 +224,7 @@
   position: absolute;
   top: 50px;
   right: 0px;
+  z-index: 10;
   height: 100vh;
   padding: 20px;
   color: #363636;
