@@ -26,7 +26,7 @@ app.use("/api/auth", authRouter)
 app.use("/api/product", productRouter)
 app.use("/api/comment", commentRouter)
 app.use("/api/order", orderRouter)
-app.use("/api/wishlish", wishlistRouter)
+app.use("/api/wishlist", wishlistRouter)
 app.use("/api/compare", compareRouter)
 
 app.listen(5000, () => {
