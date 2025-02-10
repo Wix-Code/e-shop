@@ -1,9 +1,15 @@
 import Comment from "../models/comment.model.js";
+import Product from "../models/product.model.js";
 
 export const comment = async (req, res) => {
   try {
     const { userId, productId, title } = req.body;
     const comment = new Comment({ title, userId, productId });
+
+    await Product.findByIdAndUpdate(productId, {
+      $push: { comment: comment._id }
+    });
+
     await comment.save();
     res.status(201).json({ success: true, comment });
   } catch (error) {
