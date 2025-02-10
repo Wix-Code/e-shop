@@ -59,3 +59,22 @@ export const deleteProductFromWishlist = async (req, res) => {
     res.status(500).json({ success: false, message: "Failed to delete product from wishlist" });
   }
 };
+
+export const getWishlist = async (req, res) => { 
+  const { userId } = req.body;
+  try {
+    const user = await userModel.findById(userId);
+    
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const wishlist = user.wish
+    
+    return res.status(200).json({ success: true, message: "Wishlist fetched", wishlist });
+    
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: "Failed to fetch wishlist" });
+  }
+}
