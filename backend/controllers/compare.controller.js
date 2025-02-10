@@ -11,7 +11,7 @@ export const compareProducts = async (req, res) => {
     }
 
     const compare = user.compare.find((item) => item.productId.toString() === productId);
-    console.log(compare, "add product")
+   
     if (compare) {
       return res.status(200).json({ success: true, message: "Product already in user's list", compare: user.compare })
     }
@@ -26,3 +26,27 @@ export const compareProducts = async (req, res) => {
     res.status(500).json({ success: false, message: "Failed to add product to compare list" });
   }
 }
+
+export const resetProduct = async (req, res) => { 
+  const { userId } = req.body;
+
+  try {
+    const user = await userModel.findById(userId);
+    
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+
+    // Reset the compare list
+    user.compare = [];
+
+    // Save changes
+    await user.save();
+    
+    return res.status(200).json({ success: true, message: "Compare list reset", compare: user.compare });
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: "Failed to reset compare list" });
+  }
+};
