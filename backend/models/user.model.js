@@ -18,6 +18,15 @@ const compareSchema = new mongoose.Schema({
   price: { type: Number, required: true },
   img: { type: String, required: true },
 });
+const cartSchema = new mongoose.Schema({
+  productId: { type: mongoose.Schema.Types.ObjectId, ref: "Product", required: true},
+  title: { type: String, required: true },
+  description: { type: String, required: true },
+  cat: { type: String, required: true },
+  qty: { type: Number, default: 1 },
+  price: { type: Number, required: true },
+  img: { type: String, required: true },
+});
 
 const userSchema = new mongoose.Schema({
   fname: { type: String, required : true },
@@ -27,6 +36,7 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   wish: [wishSchema],
   compare: [compareSchema],
+  cart: [cartSchema],
 },  { timestamps: true });
 
 export default mongoose.model('User', userSchema);

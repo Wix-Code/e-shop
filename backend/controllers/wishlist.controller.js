@@ -1,4 +1,3 @@
-import Product from "../models/product.model.js";
 import userModel from "../models/user.model.js";
 
 export const wishlist = async (req, res) => {
@@ -22,7 +21,7 @@ export const wishlist = async (req, res) => {
     
     await user.save();
 
-    return res.status(200).json({success: true, message: "Items in wishlist", addToWish})
+    return res.status(200).json({success: true, message: "Items in wishlist", user})
 
   } catch (error) {
     console.log(error);
