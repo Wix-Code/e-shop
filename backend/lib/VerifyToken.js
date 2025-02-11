@@ -14,6 +14,7 @@ export const VerifyToken = async (req, res, next) => {
      // IMPLIMENT TOKEN VERIFICATION
     const decode = jwt.verify(token, process.env.JWT_SECRET_KEY);
     req.user = decode.id;
+    console.log(req.user, "user")
     next();
   
   } catch (error) {

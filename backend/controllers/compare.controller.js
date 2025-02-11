@@ -1,8 +1,9 @@
 import userModel from "../models/user.model.js";
 
 export const compareProducts = async (req, res) => {
-
-    const { userId, productId, price, title, description, img, cat, brand } = req.body;
+   
+  const userId  = req.body.id;
+  const { productId, price, title, description, img, cat, brand } = req.body;
   try {
     const user = await userModel.findById(userId);
 
