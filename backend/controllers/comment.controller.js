@@ -3,7 +3,8 @@ import Product from "../models/product.model.js";
 
 export const comment = async (req, res) => {
   try {
-    const { userId, productId, title } = req.body;
+    const userId = req.user;
+    const { productId, title } = req.body;
     const comment = new Comment({ title, userId, productId });
 
     await Product.findByIdAndUpdate(productId, {

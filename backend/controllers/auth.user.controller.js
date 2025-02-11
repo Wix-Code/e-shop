@@ -124,7 +124,7 @@ export const forgotPassword = async (req ,res) => {
 
     await transporter.sendMail(mailOptions);
 
-    res.status(200).json({success: true, message: "Reset Password email sent successfully"})
+    res.status(200).json({success: true, message: "Reset Password email sent successfully", mailOptions})
 
     
   } catch (error) {
@@ -133,9 +133,31 @@ export const forgotPassword = async (req ,res) => {
   }
 }
 
-export const resetPassword = async (req, res) => {
+export const resetPassword = async (req, res) => { 
+  const { id, token } = req.query;
+  const { password } = req.body;
   try {
+    const user = await userModel.findById(id);
     
+    if (!user) {
+      return res.status(400).json({ success: false, message: "User not found" });
+    }
+
+    const secret = (process.env.JWT_SECRET_KEY || "") + user.password;
+
+    try {
+      jwt.verify(token, secret); // Verify the token with the same secret used during creation
+    } catch (err) {
+      res.status(400).json({ success: false, message: "Invalid or expired token" });
+    }
+    
+    const hashedPassword = await bcrypt.hash(password, 10);
+    user.password = hashedPassword;
+
+    await user.save();
+
+    res.status(200).json({ success: true, message: "Password has been reset successfully" });
+
   } catch (error) {
     console.log(error)
     res.status(500).json({ success: false, message: "Failed to reset password", error });
@@ -149,7 +171,7 @@ export const updateProfile = async (req, res) => {
   
   //const userId = await userModel.findById({ user });
   if(user !== req.params.id){
-    res.status(400).json({ success: false, message: "Not Authorized"})
+   return res.status(400).json({ success: false, message: "Not Authorized"})
   }
   try {
 
