@@ -2,7 +2,7 @@ import userModel from "../models/user.model.js";
 
 export const compareProducts = async (req, res) => {
    
-  const userId  = req.body.id;
+  const userId  = req.user;
   const { productId, price, title, description, img, cat, brand } = req.body;
   try {
     const user = await userModel.findById(userId);
@@ -29,7 +29,7 @@ export const compareProducts = async (req, res) => {
 }
 
 export const resetProduct = async (req, res) => { 
-  const { userId } = req.body;
+  const userId  = req.user;
 
   try {
     const user = await userModel.findById(userId);
@@ -53,7 +53,7 @@ export const resetProduct = async (req, res) => {
 };
 
 export const getCompareProducts = async (req, res) => { 
-  const { userId } = req.body;
+  const userId  = req.user;
   try {
     const user = await userModel.findById(userId);
     

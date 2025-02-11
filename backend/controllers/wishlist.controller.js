@@ -1,7 +1,8 @@
 import userModel from "../models/user.model.js";
 
 export const wishlist = async (req, res) => {
-  const { userId, productId, img, cat, title, price, description } = req.body
+  const userId  = req.user;
+  const { productId, img, cat, title, price, description } = req.body
 
   try{
 
@@ -30,7 +31,8 @@ export const wishlist = async (req, res) => {
 }
 
 export const deleteProductFromWishlist = async (req, res) => { 
-  const { userId, productId } = req.body;
+  const userId  = req.user;
+  const { productId } = req.body;
   
   try {
     const user = await userModel.findById(userId);
@@ -61,7 +63,7 @@ export const deleteProductFromWishlist = async (req, res) => {
 };
 
 export const getWishlist = async (req, res) => { 
-  const { userId } = req.body;
+  const userId  = req.user;
   try {
     const user = await userModel.findById(userId);
     
