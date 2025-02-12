@@ -26,6 +26,7 @@ const cartSchema = new mongoose.Schema({
   qty: { type: Number, default: 1 },
   price: { type: Number, required: true },
   img: { type: String, required: true },
+  brand: { type: String, required: true },
 });
 
 const userSchema = new mongoose.Schema({

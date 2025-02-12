@@ -1,11 +1,13 @@
 import express from "express"
-import { cart, decCart, getAllCart, removeFromCart } from "../controllers/cart.controller.js";
+import { VerifyToken } from "../lib/VerifyToken.js";
+import { addProductToCart, decProductInCart, getAllCart, incProductInCart, removeFromCart } from "../controllers/cart.controller.js";
 
 const router = express.Router()
 
-router.post("/", cart)
-router.post("/decrease", decCart)
-router.post("/remove", removeFromCart)
+router.post("/", VerifyToken, addProductToCart)
+router.post("/increase", VerifyToken, incProductInCart)
+router.post("/decrease", VerifyToken, decProductInCart)
+router.post("/remove", VerifyToken, removeFromCart)
 router.get("/", getAllCart)
 
 export default router;

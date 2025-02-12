@@ -7,6 +7,7 @@ import orderRouter from "./routes/order.route.js"
 import productRouter from "./routes/products.route.js"
 import commentRouter from "./routes/comment.route.js"
 import compareRouter from "./routes/compare.route.js"
+import cartRouter from "./routes/cart.route.js"
 import wishlistRouter from "./routes/wishlist.route.js"
 import cookieParser from "cookie-parser";
 
@@ -28,6 +29,7 @@ app.use("/api/comment", commentRouter)
 app.use("/api/order", orderRouter)
 app.use("/api/wishlist", wishlistRouter)
 app.use("/api/compare", compareRouter)
+app.use("/api/cart", cartRouter)
 
 app.listen(5000, () => {
   console.log("Server is running on port 5000");
