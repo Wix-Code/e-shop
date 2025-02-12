@@ -3,6 +3,8 @@ import validator from "validator";
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
 import nodemailer from "nodemailer"
+import { emailTemplate } from "../lib/Template.js";
+//import { emailTemplate } from "../lib/Template.js";
 
 export const registerUser = async (req, res) => {
 
@@ -104,7 +106,7 @@ export const forgotPassword = async (req ,res) => {
 
     const token = jwt.sign({id: user._id, email: user.email}, secret, {expiresIn: '1h'});
 
-    const url = `http://localhost:3000/resetpassword?id=${user._id}&token=${token}`;
+    const url = `http://localhost:3000/reset-password?id=${user._id}&token=${token}`;
 
 
     const transporter = nodemailer.createTransport({
@@ -119,7 +121,7 @@ export const forgotPassword = async (req ,res) => {
       to: user.email,
       from: process.env.EMAIL_USER,
       subject: 'Password Reset Request',
-      text: `link to reset your password. Click on it, and you will directed to where you have to change your password ${url}`,
+      html: emailTemplate(url)
     };
 
     await transporter.sendMail(mailOptions);
@@ -156,7 +158,7 @@ export const resetPassword = async (req, res) => {
 
     await user.save();
 
-    res.status(200).json({ success: true, message: "Password has been reset successfully" });
+    res.status(200).json({ success: true, message: "Password has been reset successfully", user });
 
   } catch (error) {
     console.log(error)
