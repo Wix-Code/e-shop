@@ -9,7 +9,7 @@ export const otpCreate = async (req, res) => {
     return res.status(400).json({ success: false, message: "Email is required" });
   }
 
-  const otpCode = otpGenerator.generate(6, { digits: true, alphabets: false, upperCase: false, specialChars: false });
+  const otpCode = otpGenerator.generate(6, { digits: true, upperCaseAlphabets: false, lowerCaseAlphabets: false, specialChars: false });
   try {
     await Otp.create({ email, otpCode });
 
