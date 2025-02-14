@@ -1,0 +1,27 @@
+.responsive{
+  position: sticky;
+  bottom: 0px;
+  background: #ffffffe8;
+  z-index: 80;
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+}
+.respon{
+  display: flex;
+  color: var(--secondary);
+  align-items: center;
+  font-size: 18px;
+  flex-direction: column;
+  gap: 5px;
+}
+.respon p{
+  font-size: 14px;
+}
+
+@media screen and (max-width : 450px) {
+  .responsive{
+    display: flex;
+  }
+}

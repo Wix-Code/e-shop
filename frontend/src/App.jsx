@@ -5,6 +5,7 @@ import './App.css'
 import Navbar from './subpages/Navbar'
 import Rout from './Rout'
 import Footer from './subpages/Footer'
+import ResponsiveNavbar from './subpages/ResponsiveNavbar'
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
         <Navbar />
         <Rout />
         <Footer />
+        <ResponsiveNavbar />
       </div>
     </>
   )

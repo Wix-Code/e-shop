@@ -305,13 +305,21 @@
   width: 300px;
   border: 1px solid var(--light);
 }
-
+.nav_x{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.nav_x button{
+  font-size: 20px;
+  color: var(--soft-white);
+}
 @media screen and (max-width : 450px) {
   .nav1,.nav3,.nav_inp, .nav_log, .nav_notify{
     display: none;
   }
   .nav2{
-    padding: 0px 15px;
+    padding: 15px 15px;
   }
   .nav2 img{
     width: 90px;

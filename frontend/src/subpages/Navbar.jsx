@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import "./navbar.css"
 import { NavLinks } from '../dummy/data'
 import { IoNotifications, IoSearchOutline } from "react-icons/io5";
-import { FaHeart, FaRegUser } from "react-icons/fa";
+import { FaBars, FaHeart, FaRegUser } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
 import { FaCartShopping, FaCodeCompare } from "react-icons/fa6";
 import { Link, useLocation} from 'react-router-dom';
@@ -10,12 +10,14 @@ import { createStore } from '../libs/context';
 import { RiComputerLine } from "react-icons/ri";
 import { CiFaceFrown } from "react-icons/ci";
 import { LiaTimesSolid } from "react-icons/lia";
+import MobileNav from './MobileNav';
 
 const Navbar = () => {
 
   const { cart, cartQty, compare, wishlist } = useContext(createStore)
   const [openCat, setOpenCat] = useState(false)
   const [cartOpen, setCartOpen] = useState(false)
+  const [openSideBar, setOpenSideBar] = useState(false)
   const location = useLocation()
   const pathname = location.pathname
 
@@ -31,7 +33,16 @@ const Navbar = () => {
           <p>Hotline: +234 812 682 9146</p>
         </div>
         <div className='nav2'>
-          <img src="https://ebeosi.com.ng/public/uploads/all/keKlwReqyUyfJmfK6M9bFB8JVF9DgzDQ9ZFBBNmm.png" alt="" />
+          <div className="nav_x">
+            <button onClick={() => setOpenSideBar(!openSideBar)}><FaBars /></button>
+            {
+              openSideBar &&
+              (
+                <div><MobileNav setOpenSideBar={setOpenSideBar} openSideBar={openSideBar} /></div>
+              )
+            }
+            <img src="https://ebeosi.com.ng/public/uploads/all/keKlwReqyUyfJmfK6M9bFB8JVF9DgzDQ9ZFBBNmm.png" alt="" />
+          </div>
           <div className='nav_inp'>
             <input type="text" placeholder="I am searching for.." id="" />
             <button><IoSearchOutline /></button>

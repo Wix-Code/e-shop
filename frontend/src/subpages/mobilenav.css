@@ -1,3 +1,36 @@
 .mobile{
   display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: #ffffff;
+  height: 100vh;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  padding: 30px;
+  width: 80%;
+}
+.mobile button{
+  font-size: 24px;
+  color: var(--primary);
+  max-width: fit-content;
+}
+.mobile_side hr{
+  width: 100%;
+  height: 1px;
+  background: var(--soft-light);
+}
+.mobile_side{
+  display: flex;
+  gap: 30px;
+  flex-direction: column;
+}
+.mobi, .mobil{
+  display: flex;
+  gap: 30px;
+  color: var(--soft-dark);
+  flex-direction: column;
+}
+.mobil_btn h4{
+  color: var(--primary);
 }
