@@ -96,3 +96,41 @@
   font-size: 14px;
   color: #ffffff;
 }
+
+@media screen and (max-width : 450px) {
+  .footer{
+    padding-top: 30px;
+  }
+  .footer1{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0px 15px;
+  }
+  .foot2 h4,.foot1 h4, .foot3 h4, .foot_links h4{
+    font-size: 12px;
+  }
+  .address a{
+    font-size: 10px;
+  }
+  .zone ul li, .foot4 p{
+    font-size: 10px;
+  }
+  .foot4 p{
+    line-height: 18px;
+    text-align: justify;
+  }
+  .foot4 img{
+    width: 140px;
+  }
+  .foot_icons button{
+    width: 30px;
+    height: 30px;
+  }
+  .footer2{
+    margin-top: 20px;
+  }
+  .f20{
+    text-align: center;
+  }
+}
