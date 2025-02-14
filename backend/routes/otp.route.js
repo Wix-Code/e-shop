@@ -4,6 +4,6 @@ import { otpCreate, otpVerify } from "../controllers/otp.controller.js";
 const router = express.Router()
 
 router.post("/", otpCreate)
-router.post("/reset", VerifyToken, otpVerify)
+router.post("/verify", otpVerify)
 
 export default router;

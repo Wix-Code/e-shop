@@ -6,9 +6,10 @@ const otpSchema = new mongoose.Schema({
   },
   otpCode: {
     type: String, required: false
-  }
-}, { timestamps: true });
+  },
+  createdAt: { type: Date, expires: '5m', default: Date.now }
+});
 
-const Comment = mongoose.model('Otp', otpSchema);
+const Otp = mongoose.model('Otp', otpSchema);
 
 export default Otp;

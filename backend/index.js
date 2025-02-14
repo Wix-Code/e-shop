@@ -9,6 +9,7 @@ import commentRouter from "./routes/comment.route.js"
 import compareRouter from "./routes/compare.route.js"
 import cartRouter from "./routes/cart.route.js"
 import wishlistRouter from "./routes/wishlist.route.js"
+import otpRouter from "./routes/otp.route.js"
 import cookieParser from "cookie-parser";
 
 dotenv.config();
@@ -30,6 +31,7 @@ app.use("/api/order", orderRouter)
 app.use("/api/wishlist", wishlistRouter)
 app.use("/api/compare", compareRouter)
 app.use("/api/cart", cartRouter)
+app.use("/api/otp", otpRouter)
 
 app.listen(5000, () => {
   console.log("Server is running on port 5000");
