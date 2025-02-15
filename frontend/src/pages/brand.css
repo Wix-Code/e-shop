@@ -53,7 +53,7 @@
     padding: 0px 15px;
     margin: 30px 0px;
     display: flex;
-    gap: 30px;
+    gap: 40px;
     flex-direction: column;
   }
   .brand_div{
@@ -71,7 +71,7 @@
     grid-template-columns: repeat(3, 1fr);
   }
   .brand-logo{
-    padding: 10px;
+    padding: 20px;
     width: 100%;
     display: flex;
     justify-content: center;
