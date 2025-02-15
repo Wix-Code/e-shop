@@ -109,12 +109,13 @@
   }
   .foot2 h4,.foot1 h4, .foot3 h4, .foot_links h4{
     font-size: 12px;
+    text-transform: capitalize;
   }
-  .address a{
-    font-size: 10px;
+  .address a, .address p{
+    font-size: 12px;
   }
   .zone ul li, .foot4 p{
-    font-size: 10px;
+    font-size: 12px;
   }
   .foot4 p{
     line-height: 18px;

@@ -7,10 +7,13 @@ const Best = () => {
   const { data } = useContext(createStore)
     
     var settings = {
-      infinite: false,
-      speed: 500,
+      infinite: true,
+      speed: 4000,
+      autoplay: true,
+      cssEase: "linear",
+      autoplaySpeed: 4000,
       slidesToShow: 5,
-      slidesToScroll: 4,
+      slidesToScroll: 1,
       initialSlide: 0,
      
       responsive: [
@@ -35,7 +38,7 @@ const Best = () => {
           breakpoint: 480,
           settings: {
             slidesToShow: 2,
-            slidesToScroll: 1
+            slidesToScroll: 1,
           }
         }
       ]
