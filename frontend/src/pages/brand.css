@@ -47,3 +47,42 @@
 .brand-logo img{
   width: 60px;
 }
+
+@media screen and (max-width : 450px) {
+  .brands{
+    padding: 0px 15px;
+    margin: 30px 0px;
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+  }
+  .brand_div{
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .brand_div h2{
+    font-size: 18px;
+  }
+  .brand{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .brand-logo{
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+    font-size: 14px;
+  }
+  .brand-logo img{
+    height: 100px;
+    width: 100%;
+  }
+}
