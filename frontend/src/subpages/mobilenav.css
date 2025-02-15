@@ -30,7 +30,9 @@
   gap: 30px;
   color: var(--soft-dark);
   flex-direction: column;
+  font-size: 14px;
 }
 .mobil_btn h4{
   color: var(--primary);
+  font-size: 14px;
 }

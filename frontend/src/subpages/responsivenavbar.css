@@ -12,12 +12,12 @@
   display: flex;
   color: var(--secondary);
   align-items: center;
-  font-size: 18px;
+  font-size: 16px;
   flex-direction: column;
   gap: 5px;
 }
 .respon p{
-  font-size: 14px;
+  font-size: 12px;
 }
 
 @media screen and (max-width : 450px) {

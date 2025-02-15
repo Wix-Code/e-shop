@@ -1,21 +1,28 @@
 import React from 'react'
 import "./responsivenavbar.css"
-import { FaBars, FaShoppingCart } from 'react-icons/fa'
+import { FiHome } from "react-icons/fi";
+import { BiSolidCategory } from "react-icons/bi";
+import { FaShoppingCart } from 'react-icons/fa'
+import { MdAccountCircle } from 'react-icons/md';
 
 const ResponsiveNavbar = () => {
   return (
     <div className='responsive'>
       <div className="respon">
-        <FaBars />
+        <FiHome />
         <p>Home</p>
       </div>
       <div className="respon">
-        <FaBars />
+        <BiSolidCategory />
         <p>Categories</p>
       </div>
       <div className="respon">
         <FaShoppingCart />
         <p>Cart</p>
+      </div>
+      <div className="respon">
+        <MdAccountCircle />
+        <p>My Accounts</p>
       </div>
     </div>
   )
