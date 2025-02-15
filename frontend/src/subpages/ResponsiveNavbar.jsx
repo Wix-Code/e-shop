@@ -13,19 +13,19 @@ const ResponsiveNavbar = () => {
   return (
     <div className='responsive'>
       <Link to="/">
-        <div className={pathname === "/" ? "active" : "respon"}>
+        <div className={pathname === "/" ? "acti" : "respon"}>
           <FiHome />
           <p>Home</p>
         </div>
       </Link>
       <Link to="/store">
-        <div className={pathname === "/store" ? "active" : "respon"}>
+        <div className={pathname === "/store" ? "acti" : "respon"}>
           <BiSolidCategory />
           <p>Categories</p>
         </div>
       </Link>
       <Link to="/cart">
-        <div className={pathname === "/cart" ? "active" : "respon"}>
+        <div className={pathname === "/cart" ? "acti" : "respon"}>
           <FaShoppingCart />
           <p>Cart</p>
         </div>

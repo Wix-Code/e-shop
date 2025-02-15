@@ -312,9 +312,10 @@
 }
 .nav_x button{
   font-size: 20px;
+  display: none;
   color: var(--soft-white);
 }
-@media screen and (max-width : 450px) {
+@media screen and (max-width : 800px) {
   .nav1,.nav3,.nav_inp, .nav_log, .nav_notify{
     display: none;
   }
@@ -323,5 +324,8 @@
   }
   .nav2 img{
     width: 90px;
+  }
+  .nav_x button{
+    display: flex;
   }
 }
