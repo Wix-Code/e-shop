@@ -10,6 +10,11 @@ const MobileNav = ({openSideBar, setOpenSideBar}) => {
     <div className='mobile'>
       <button onClick={() => setOpenSideBar(false)}><FaTimes /></button>
       <div className="mobile_side">
+        <div className="mob_det">
+          <img src="https://ebeosi.com.ng/public/uploads/all/qSySmwv8CDTXfrztGKUagb5JFMeENtfjkoT5a1Go.jpg" alt="" />
+          <h5>Ogbonna Ugochukwu</h5>
+        </div>
+        <hr />
         <div className="mobi">
           {
             NavLinks.map((link) => {

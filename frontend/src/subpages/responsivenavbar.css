@@ -1,3 +1,7 @@
+.responsives{
+  position: sticky;
+  bottom: 0px;
+}
 .responsive{
   position: sticky;
   bottom: 0px;
