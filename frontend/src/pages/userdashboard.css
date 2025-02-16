@@ -8,3 +8,12 @@
 .user_dash_body{
   width: 75%;
 }
+
+@media screen and (max-width : 550px) {
+  .user_dash{
+    margin: 15px;
+  }
+ .user_dash_body{
+  width: 100%;
+ }
+}

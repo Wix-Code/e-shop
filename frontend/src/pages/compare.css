@@ -86,3 +86,29 @@
 .no_compare img{
   width: 300px;
 }
+
+@media screen and (max-width : 550px) {
+  .compare1{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .compare_reset h3{
+    font-size: 16px;
+  }
+  .compare_reset h5{
+    font-size: 12px;
+  }
+  .compare_img h3, .compare_img p, .compare_img span{
+    font-size: 13px;
+    color: var(--soft-dark);
+  }
+  .compare_img, .compare_btn{
+    padding: 10px;
+  }
+  .compare_img img{
+    height: 150px;
+    width: 100%;
+    object-fit: cover;
+  }
+}
