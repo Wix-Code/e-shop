@@ -310,3 +310,36 @@
 .related_item p:hover{
   color: var(--primary);
 }
+
+
+@media screen and (max-width : 550px) {
+ .item_single{
+  margin: 15px;
+ }
+ .review, .single_div{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+ }
+ .single1{
+  width: 100%;
+ }
+ .rate_div{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+ }
+ .rate_div, .description{
+  padding: 20px;
+ }
+ .top, .top1{
+  width: 100%;
+ }
+ .rate_left span, .rate_stars{
+  font-size: 12px;
+ }
+ .top2{
+  width: 100%;
+ }
+}

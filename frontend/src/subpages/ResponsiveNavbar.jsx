@@ -31,10 +31,12 @@ const ResponsiveNavbar = () => {
             <p>Cart</p>
           </div>
         </Link>
-        <div className="respon">
-          <MdAccountCircle />
-          <p>My Accounts</p>
-        </div>
+        <Link to="/profile">
+          <div className="respon">
+            <MdAccountCircle />
+            <p>Manage Profile</p>
+          </div>
+        </Link>
       </div>
     </div>
   )

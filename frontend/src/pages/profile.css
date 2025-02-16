@@ -70,3 +70,15 @@
 .pro_add:hover{
   background: var(--soft-light);
 }
+
+@media screen and (max-width : 550px) {
+  .pro_inp{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+  .pro_inp label, .pro_inp input{
+    width: 100%;
+  }
+}
