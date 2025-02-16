@@ -11,7 +11,7 @@
   width: 80%;
 }
 .mobile button{
-  font-size: 24px;
+  font-size: 20px;
   color: var(--primary);
   max-width: fit-content;
 }
@@ -30,17 +30,18 @@
   gap: 30px;
   color: var(--soft-dark);
   flex-direction: column;
-  font-size: 13px;
+  font-size: 12px;
 }
 .mobil_btn h4{
   color: var(--primary);
-  font-size: 13px;
+  font-size: 12px;
 }
 .mob_det{
   display: flex;
   gap: 10px;
   align-items: center;
-  font-size: 13px;
+  font-size: 12px;
+  color: var(--soft-dark);
 }
 .mob_det img{
   width: 40px;

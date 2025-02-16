@@ -12,7 +12,7 @@ const MobileNav = ({openSideBar, setOpenSideBar}) => {
       <div className="mobile_side">
         <div className="mob_det">
           <img src="https://ebeosi.com.ng/public/uploads/all/qSySmwv8CDTXfrztGKUagb5JFMeENtfjkoT5a1Go.jpg" alt="" />
-          <h5>Ogbonna Ugochukwu</h5>
+          <h4>Ogbonna Ugochukwu</h4>
         </div>
         <hr />
         <div className="mobi">

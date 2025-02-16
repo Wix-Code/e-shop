@@ -102,4 +102,10 @@
     height: 100px;
     width: 100%;
   }
+  .store_drop, .store_dropdown, .store_nav{
+    font-size: 13px;
+  }
+  .store_cat h2{
+    font-size: 17px;
+  }
 }
