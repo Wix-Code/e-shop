@@ -35,3 +35,34 @@
     display: flex;
   }
 }
+
+@media screen and (min-width : 451px) and (max-width : 850px) {
+  .responsives{
+    position: sticky;
+    bottom: 10px;
+    width: 100%;
+    z-index: 80;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .responsive{
+    position: sticky;
+    bottom: 10px;
+    width: 60%;
+    background: #ffffffe8;
+    z-index: 80;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    border-radius: 50px;
+  }
+  .acti, .respon{
+    font-size: 20px;
+  }
+  .acti p, .respon p{
+    font-size: 16px;
+  }
+}

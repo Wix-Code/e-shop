@@ -11,28 +11,30 @@ const ResponsiveNavbar = () => {
   const pathname = location.pathname
 
   return (
-    <div className='responsive'>
-      <Link to="/">
-        <div className={pathname === "/" ? "acti" : "respon"}>
-          <FiHome />
-          <p>Home</p>
+    <div className="responsives">
+      <div className='responsive'>
+        <Link to="/">
+          <div className={pathname === "/" ? "acti" : "respon"}>
+            <FiHome />
+            <p>Home</p>
+          </div>
+        </Link>
+        <Link to="/store">
+          <div className={pathname === "/store" ? "acti" : "respon"}>
+            <BiSolidCategory />
+            <p>Categories</p>
+          </div>
+        </Link>
+        <Link to="/cart">
+          <div className={pathname === "/cart" ? "acti" : "respon"}>
+            <FaShoppingCart />
+            <p>Cart</p>
+          </div>
+        </Link>
+        <div className="respon">
+          <MdAccountCircle />
+          <p>My Accounts</p>
         </div>
-      </Link>
-      <Link to="/store">
-        <div className={pathname === "/store" ? "acti" : "respon"}>
-          <BiSolidCategory />
-          <p>Categories</p>
-        </div>
-      </Link>
-      <Link to="/cart">
-        <div className={pathname === "/cart" ? "acti" : "respon"}>
-          <FaShoppingCart />
-          <p>Cart</p>
-        </div>
-      </Link>
-      <div className="respon">
-        <MdAccountCircle />
-        <p>My Accounts</p>
       </div>
     </div>
   )
