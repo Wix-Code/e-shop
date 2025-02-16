@@ -30,13 +30,13 @@
 .acti p{
   font-size: 12px;
 }
-@media screen and (max-width : 450px) {
+@media screen and (max-width : 550px) {
   .responsive{
     display: flex;
   }
 }
 
-@media screen and (min-width : 451px) and (max-width : 850px) {
+@media screen and (min-width : 551px) and (max-width : 850px) {
   .responsives{
     position: sticky;
     bottom: 10px;
