@@ -4,11 +4,50 @@ import Featured from '../subpages/Featured'
 import { CiHeart } from "react-icons/ci";
 import { FaFacebookF, FaLinkedinIn, FaMinus, FaPlus, FaShoppingCart, FaStar, FaTwitter, FaWhatsapp } from 'react-icons/fa';
 import { dummyData } from '../dummy/data';
+import Slider from 'react-slick';
 
 const ItemSinglePage = () => {
 
   const image = ["https://ebeosi.com.ng/public/uploads/all/qSySmwv8CDTXfrztGKUagb5JFMeENtfjkoT5a1Go.jpg", "https://ebeosi.com.ng/public/uploads/all/XKC1hMAgPpxs54QmMlOwk9XOfpWsj6x6y3sp7vBQ.jpg", "https://ebeosi.com.ng/public/uploads/all/oCx7Y2R8To7ewEXhtvYFRsfWxhZKjghy6cIJioRa.jpg","https://ebeosi.com.ng/public/uploads/all/MKUDDB8vtJPOHhkwY2VpLZTYynd8EPuf4iLUPQlh.jpg"]
   const [img, setImg] = useState(image[0])
+
+  var settings = {
+    infinite: true,
+    speed: 4000,
+    autoplay: true,
+    cssEase: "linear",
+    autoplaySpeed: 4000,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    initialSlide: 0,
+   
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        }
+      }
+    ]
+  };
   
   return (
     <div className='item_single'>
@@ -133,17 +172,19 @@ const ItemSinglePage = () => {
           <div className="description">       
             <h4>Related Products</h4>
             <div className="related2">
-              {
-                dummyData.slice(0, 4).map((item) => {
-                  return (
-                    <div className="related_item" key={item.id}>
-                      <img src={item.image} alt={item.name} />
-                      <p>{item.name}</p>
-                      <h4>&#8358;{new Intl.NumberFormat('en-US').format(item?.price)}</h4>
-                    </div>
-                  )
-                })
-              }
+             
+                {
+                  dummyData.slice(0, 3).map((item) => {
+                    return (
+                      <div className="related_item" key={item.id}>
+                        <img src={item.image} alt={item.name} />
+                        <p>{item.name}</p>
+                        <h4>&#8358;{new Intl.NumberFormat('en-US').format(item?.price)}</h4>
+                      </div>
+                    )
+                  })
+                }
+           
             </div>
           </div>
         </div>
