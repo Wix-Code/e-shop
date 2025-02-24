@@ -10,8 +10,7 @@ import { FaCodeCompare } from 'react-icons/fa6';
 
 
 const Card = ({ item }) => {
-  const { addToCart, addCompare, addWishlist, setViewProduct, viewProduct } = useContext(createStore)
-  const [open, setOpen] = useState(null);
+  const { addToCart, addCompare, addWishlist } = useContext(createStore)
   
   var settings = {
     dots: true,
@@ -59,7 +58,7 @@ const Card = ({ item }) => {
     <div className="cards">
       <div className='card' key={item.id}>
         <div className="card_img">
-          <img src={item.image} alt="" onClick={() => setViewProduct(!viewProduct)} />
+          <img src={item.image} alt="" />
           <div className="card_wish">
             <p onClick={() => addCompare(item)}><FaCodeCompare /></p>
             <p onClick={() => addWishlist(item)}><FaHeart /></p>

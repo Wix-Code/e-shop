@@ -95,8 +95,9 @@
   display: flex;
   position: absolute;
   align-items: center;
-  z-index: 90;
-  background: #ffffff;
+  z-index: 100;
+  top: 0px;
+  background: #ffffff57;
   border: 2px solid black;
   width: 100%;
   justify-content: center;

@@ -9,27 +9,12 @@ import ResponsiveNavbar from './subpages/ResponsiveNavbar'
 import { createStore } from './libs/context'
 
 function App() {
-  const { viewProduct, data } = useContext(createStore)
-
   return (
     <>
       <div>
         <Navbar />
         <Rout />
         <Footer />
-          <div className="cardd">
-            {
-              viewProduct && (
-                <div className="card_open">
-                {data.map((item) => {
-                   return (
-                     <img src={item.image} alt="" />
-                   )
-                 })}
-                </div>
-              )
-            }
-          </div>
         <ResponsiveNavbar />
       </div>
     </>
