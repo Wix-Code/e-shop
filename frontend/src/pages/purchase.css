@@ -1,0 +1,17 @@
+.purchase{
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.purchase_img{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.purchase_img img{
+  width: 300px;
+}

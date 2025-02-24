@@ -9,6 +9,7 @@ import { Link, useLocation} from 'react-router-dom';
 import { createStore } from '../libs/context';
 import { RiComputerLine } from "react-icons/ri";
 import { CiFaceFrown } from "react-icons/ci";
+import { BsCalendar2CheckFill } from "react-icons/bs";
 import { LiaTimesSolid } from "react-icons/lia";
 import MobileNav from './MobileNav';
 
@@ -72,9 +73,9 @@ const Navbar = () => {
                   <img src="https://ebeosi.com.ng/public/assets/img/avatar-place.png" alt="" />
                   <h5>Ogbonna Ugochukwu</h5>
                   <div className="nav_hover">
-                    <Link to="/profile">
+                    <Link to="/purchase">
                       <div className='cat_open' onClick={() => setOpenCat(false)}>
-                        <RiComputerLine /> 
+                        <BsCalendar2CheckFill /> 
                         <p>Purchase History</p>
                       </div>
                     </Link>

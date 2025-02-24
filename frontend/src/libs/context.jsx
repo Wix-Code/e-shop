@@ -12,18 +12,36 @@ const StoreProvider = ({children}) => {
   const [viewProduct, setViewProduct] = useState(false)
 
  
+  useEffect(() => {
+    const storedCart = localStorage.getItem("cart");
+    if (storedCart) {
+      setCart(JSON.parse(storedCart));
+    }
+  }, []);
+  useEffect(() => {
+    const storedWishlist = localStorage.getItem("wishlist");
+    if (storedWishlist) {
+      setCart(JSON.parse(storedWishlist));
+    }
+  }, []);
+  useEffect(() => {
+    const storedCompare = localStorage.getItem("compare");
+    if (storedCompare) {
+      setCart(JSON.parse(storedCompare));
+    }
+  }, []);
 
   const addToCart = (data) => {
     console.log(data)
     const exist = cart.find((x) =>  x.id === data.id)
     console.log(exist)
     if (exist) {
-     alert("Item already in cart")
+      alert("Item already in cart")
     } else {
-      setCart([...cart, { ...data, qty: 1 }]);
+      const updateCart = [...cart, { ...data, qty: 1 }];
+      setCart(updateCart);
       alert("Item added in cart")
-      console.log(exist)
-      //localStorage.setItem("cart", cart)
+      localStorage.setItem("cart", JSON.stringify(updateCart))
     }
   }
 
@@ -34,10 +52,10 @@ const StoreProvider = ({children}) => {
     if (exist) {
      alert("Item already in cart")
     } else {
-      setCompare([...compare, { ...data }]);
+      const updateCompare = [...compare, { ...data }];
+      setCompare(updateCompare);
       alert("Item added in cart")
-      console.log(exist)
-      //localStorage.setItem("cart", cart)
+      localStorage.setItem("compare", JSON.stringify(updateCompare))
     }
   }
 
@@ -47,10 +65,10 @@ const StoreProvider = ({children}) => {
     if (exist) {
      alert("Item already in cart")
     } else {
-      setwishlist([...wishlist, { ...data}]);
+      const updateWishlist = [...wishlist, { ...data}]
+      setwishlist(updateWishlist);
       alert("Item added in compare")
-      console.log(exist, "Comparing")
-      //localStorage.setItem("cart", cart)
+      localStorage.setItem("wishlist", JSON.stringify(updateWishlist))
     }
   }
 
@@ -62,10 +80,6 @@ const StoreProvider = ({children}) => {
       setCart(JSON.parse(savedCart)); // Parse and set cart state
     }
   }, []);*/
-
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
 
   console.log(cart)
 
