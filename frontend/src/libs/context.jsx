@@ -14,22 +14,14 @@ const StoreProvider = ({children}) => {
  
   useEffect(() => {
     const storedCart = localStorage.getItem("cart");
-    if (storedCart) {
-      setCart(JSON.parse(storedCart));
-    }
-  }, []);
-  useEffect(() => {
     const storedWishlist = localStorage.getItem("wishlist");
-    if (storedWishlist) {
-      setCart(JSON.parse(storedWishlist));
-    }
-  }, []);
-  useEffect(() => {
     const storedCompare = localStorage.getItem("compare");
-    if (storedCompare) {
-      setCart(JSON.parse(storedCompare));
-    }
+  
+    if (storedCart) setCart(JSON.parse(storedCart));
+    if (storedWishlist) setwishlist(JSON.parse(storedWishlist)); // Fixed
+    if (storedCompare) setCompare(JSON.parse(storedCompare)); // Fixed
   }, []);
+  
 
   const addToCart = (data) => {
     console.log(data)
@@ -47,14 +39,14 @@ const StoreProvider = ({children}) => {
 
   const addCompare = (data) => {
     console.log(data)
-    const exist = cart.find((x) =>  x.id === data.id)
+    const exist = compare.find((x) =>  x.id === data.id)
     console.log(exist)
     if (exist) {
      alert("Item already in cart")
     } else {
       const updateCompare = [...compare, { ...data }];
       setCompare(updateCompare);
-      alert("Item added in cart")
+      alert("Item added in compare")
       localStorage.setItem("compare", JSON.stringify(updateCompare))
     }
   }
@@ -67,7 +59,7 @@ const StoreProvider = ({children}) => {
     } else {
       const updateWishlist = [...wishlist, { ...data}]
       setwishlist(updateWishlist);
-      alert("Item added in compare")
+      alert("Item added in wishlist")
       localStorage.setItem("wishlist", JSON.stringify(updateWishlist))
     }
   }
