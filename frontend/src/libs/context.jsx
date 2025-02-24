@@ -9,6 +9,7 @@ const StoreProvider = ({children}) => {
   const [compare, setCompare] = useState([])
 
   const [data, setData] = useState(dummyData)
+  const [viewProduct, setViewProduct] = useState(false)
 
  
 
@@ -69,7 +70,7 @@ const StoreProvider = ({children}) => {
   console.log(cart)
 
   return (
-    <createStore.Provider value={{ data, cartQty, addCompare, compare, addToCart, cart, wishlist, addWishlist}}>
+    <createStore.Provider value={{ data, setViewProduct, viewProduct, cartQty, addCompare, compare, addToCart, cart, wishlist, addWishlist}}>
       {children}
     </createStore.Provider>
   )

@@ -10,7 +10,7 @@ import { FaCodeCompare } from 'react-icons/fa6';
 
 
 const Card = ({ item }) => {
-  const { addToCart, addCompare, addWishlist } = useContext(createStore)
+  const { addToCart, addCompare, addWishlist, setViewProduct, viewProduct } = useContext(createStore)
   const [open, setOpen] = useState(null);
   
   var settings = {
@@ -57,18 +57,9 @@ const Card = ({ item }) => {
   //console.log(item)
   return (
     <div className="cards">
-      <div className="cardd">
-      {
-        open && (
-          <div className="card_open">
-            <img src={item.image} alt="" />
-          </div>
-        )
-      }
-      </div>
       <div className='card' key={item.id}>
         <div className="card_img">
-          <img src={item.image} alt="" onClick={() => setOpen(!open)} />
+          <img src={item.image} alt="" onClick={() => setViewProduct(!viewProduct)} />
           <div className="card_wish">
             <p onClick={() => addCompare(item)}><FaCodeCompare /></p>
             <p onClick={() => addWishlist(item)}><FaHeart /></p>

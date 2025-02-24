@@ -91,14 +91,11 @@
 .card span:hover{
   color: var(--primary);
 }
-.card_open{
+.cardd{
   display: flex;
   position: absolute;
   align-items: center;
   z-index: 90;
-  left: 0px;
-  top: 0px;
-  bottom: 0px;
   background: #ffffff;
   border: 2px solid black;
   width: 100%;
