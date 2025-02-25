@@ -94,6 +94,16 @@ const StoreProvider = ({children}) => {
     return updatedCart;
   }
 
+  const deleteFromWishlist = (id) => {
+    const updatedWishlist = wishlist.filter(item => item.id !== id)
+    setwishlist(updatedWishlist)
+    localStorage.setItem("wishlist", JSON.stringify(updatedWishlist)); // Sync with localStorage immediately
+    return updatedWishlist;
+  }
+  const resetCompare = () => {
+    setCompare([])
+    localStorage.setItem("compare", JSON.stringify([])); // Sync with localStorage immediately
+  }
   /*useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);*/
@@ -102,7 +112,7 @@ const StoreProvider = ({children}) => {
   console.log(cart)
 
   return (
-    <createStore.Provider value={{ data, setViewProduct, removeFromCart, decCart, incCart, viewProduct, cartQty, addCompare, compare, addToCart, cart, wishlist, addWishlist}}>
+    <createStore.Provider value={{ resetCompare, data, setViewProduct, deleteFromWishlist, removeFromCart, decCart, incCart, viewProduct, cartQty, addCompare, compare, addToCart, cart, wishlist, addWishlist}}>
       {children}
     </createStore.Provider>
   )

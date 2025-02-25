@@ -3,6 +3,8 @@ import './cart.css'
 import { createStore } from '../libs/context'
 import { FaPlus, FaMinus, FaArrowLeft } from "react-icons/fa6";
 import { FaTimes } from "react-icons/fa";
+import { Link } from 'react-router-dom';
+import CartIcon from '../subpages/CartIcon';
 
 const Cart = () => {
 
@@ -10,6 +12,7 @@ const Cart = () => {
   console.log(cart)
   return (
     <div className='cart'>
+      <CartIcon />
       <div className="cart_div">
         {
           cart.length === 0 ? (
@@ -46,7 +49,9 @@ const Cart = () => {
                   <h3>&#8358;{cartQty}</h3>
                 </div>
                 <div className='cart_rtn'>
-                  <h4><FaArrowLeft /> Return to shop</h4>
+                  <Link to="/">
+                    <h4><FaArrowLeft /> Return to shop</h4>
+                  </Link>
                   <button>Continue to Shipping</button>
                 </div>
               </div>

@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 
 const Wishlist = () => {
 
-   const { addToCart, wishlist } = useContext(createStore)
+   const { addToCart, wishlist, deleteFromWishlist } = useContext(createStore)
   return (
     <div className='wishlist'>
       <h3>Wishlist</h3>
@@ -23,7 +23,7 @@ const Wishlist = () => {
                   <div className="card_img">
                     <img src={item.image} alt="" onClick={() => setOpen(!open)} />
                     <div className="card_wish">
-                      <p><MdDelete /></p>
+                      <p onClick={() => deleteFromWishlist(item.id)}><MdDelete /></p>
                     </div>
                     <button onClick={()=>addToCart(item)}>Add to cart</button>
                     <h5>{item.instock}</h5>

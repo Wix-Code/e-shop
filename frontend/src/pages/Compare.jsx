@@ -5,13 +5,13 @@ import { createStore } from '../libs/context';
 
 const Compare = () => {
 
-  const { addToCart, compare } = useContext(createStore);
+  const { addToCart, compare, resetCompare } = useContext(createStore);
 
   return (
     <div className='compare'>
       <div className="compare_reset">
         <h3>Compare Products</h3>
-        <h5 onClick={() => window.location.reload()}>Reset Compare List</h5>
+        <h5 onClick={resetCompare}>Reset Compare List</h5>
       </div>
       {
         compare.length === 0 ?

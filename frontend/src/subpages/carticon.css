@@ -1,0 +1,47 @@
+.icon_icon{
+  display: flex;
+  margin-top: 20px;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.deli_icon{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 1px solid var(--light);
+  gap: 10px;
+  color: var(--soft-white);
+  font-size: 14px;
+  font-weight: 500;
+  width: 120px;
+  height: 80px;
+  border-bottom: 6px solid #dfdfdf;
+}
+.bs{
+  font-size: 30px;
+  font-weight: 800;
+}
+
+@media screen and (max-width : 550px) {
+  .icon_icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .icon_icon{
+   width: 100%;
+  }
+  .deli_icon{
+   width: 80px;
+   height: 60px;
+  }
+ .deli_icon h4{
+   display: none;
+ }
+ .bs{
+  font-size: 28px;
+ }
+ }

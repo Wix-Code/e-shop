@@ -32,7 +32,7 @@ const MobileNav = ({openSideBar, setOpenSideBar}) => {
             dashlinks.map((link) => {
               return (
                 <div key={link.name}>
-                  <Link to={link.to}><h4 onClick={() => setOpenSideBar(false)}>{link.name}</h4></Link>
+                  <Link to={link.path}><h4 onClick={() => setOpenSideBar(false)}>{link.name}</h4></Link>
                 </div>
               )
             })

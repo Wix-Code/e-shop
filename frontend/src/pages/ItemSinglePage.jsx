@@ -1,12 +1,15 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import "./itemsinglepage.css"
 import Featured from '../subpages/Featured'
 import { CiHeart } from "react-icons/ci";
 import { FaFacebookF, FaLinkedinIn, FaMinus, FaPlus, FaShoppingCart, FaStar, FaTwitter, FaWhatsapp } from 'react-icons/fa';
 import { dummyData } from '../dummy/data';
 import Slider from 'react-slick';
+import { createStore } from '../libs/context';
 
 const ItemSinglePage = () => {
+
+  const { decCart, incCart } = useContext(createStore)
 
   const image = ["https://ebeosi.com.ng/public/uploads/all/qSySmwv8CDTXfrztGKUagb5JFMeENtfjkoT5a1Go.jpg", "https://ebeosi.com.ng/public/uploads/all/XKC1hMAgPpxs54QmMlOwk9XOfpWsj6x6y3sp7vBQ.jpg", "https://ebeosi.com.ng/public/uploads/all/oCx7Y2R8To7ewEXhtvYFRsfWxhZKjghy6cIJioRa.jpg","https://ebeosi.com.ng/public/uploads/all/MKUDDB8vtJPOHhkwY2VpLZTYynd8EPuf4iLUPQlh.jpg"]
   const [img, setImg] = useState(image[0])
@@ -95,9 +98,9 @@ const ItemSinglePage = () => {
           <div className="sin_add">
             <p>Quantity</p>
             <div className="sin_addto">
-              <button><FaMinus /></button>
+              <button onClick={() => decCart(item.id)}><FaMinus /></button>
               <span>1</span>
-              <button><FaPlus /></button>
+              <button onClick={() => incCart(item.id)}><FaPlus /></button>
             </div>
           </div>
           <div className="sin_total">

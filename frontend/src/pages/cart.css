@@ -121,3 +121,22 @@
   font-size: 15px;
   cursor: pointer;
 }
+
+@media screen and (max-width : 550px) {
+  .cart{
+    padding: 0px 20px;
+  }
+ .cart_rtn,.cart_box{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+ }
+ .cart_inc, .cart_price{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+ }
+ .cart_item img{
+  width: 150px;
+ }
+}
