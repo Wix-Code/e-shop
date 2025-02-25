@@ -21,6 +21,13 @@ const StoreProvider = ({children}) => {
     if (storedWishlist) setwishlist(JSON.parse(storedWishlist)); // Fixed
     if (storedCompare) setCompare(JSON.parse(storedCompare)); // Fixed
   }, []);
+
+  useEffect(() => {
+  if (cart.length > 0) {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }
+}, [cart]);
+
   
 
   const addToCart = (data) => {
@@ -66,17 +73,36 @@ const StoreProvider = ({children}) => {
 
   const cartQty = cart.reduce((acc, curr) => acc + (curr.price * curr.qty), 0)
 
+  const incCart = (id) => {
+    setCart(cart.map(item => 
+      item.id === id ? { ...item, qty: item.qty + 1 } : item
+    ));
+    localStorage.setItem("cart", JSON.stringify(updatedCart)); // Sync with localStorage immediately
+    return updatedCart;
+  }
+
+  const decCart = (id) => {
+    setCart(cart.map(item => 
+      item.id === id && item.qty > 1 ? { ...item, qty: item.qty - 1 } : item
+    ));
+  }
+
+   const removeFromCart = (id) => {
+    const updatedCart = cart.filter(item => item.id!== id)
+    setCart(updatedCart)
+    localStorage.setItem("cart", JSON.stringify(updatedCart)); // Sync with localStorage immediately
+    return updatedCart;
+  }
+
   /*useEffect(() => {
-    const savedCart = localStorage.getItem("cart");
-    if (savedCart) {
-      setCart(JSON.parse(savedCart)); // Parse and set cart state
-    }
-  }, []);*/
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);*/
+  
 
   console.log(cart)
 
   return (
-    <createStore.Provider value={{ data, setViewProduct, viewProduct, cartQty, addCompare, compare, addToCart, cart, wishlist, addWishlist}}>
+    <createStore.Provider value={{ data, setViewProduct, removeFromCart, decCart, incCart, viewProduct, cartQty, addCompare, compare, addToCart, cart, wishlist, addWishlist}}>
       {children}
     </createStore.Provider>
   )

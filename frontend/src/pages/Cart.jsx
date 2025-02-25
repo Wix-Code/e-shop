@@ -6,14 +6,17 @@ import { FaTimes } from "react-icons/fa";
 
 const Cart = () => {
 
-  const { cart, cartQty } = useContext(createStore)
+  const { cart, cartQty, decCart, incCart, removeFromCart } = useContext(createStore)
   console.log(cart)
   return (
     <div className='cart'>
       <div className="cart_div">
         {
           cart.length === 0 ? (
-            <div className='cart_item'>No Item</div>
+            <div className='cart_item'>
+              <img src="https://ebeosi.com.ng/public/assets/img/nothing.svg" alt="" />
+              <h3>No Item</h3>
+            </div>
           ) : (
               <div className='cart_items'>
                 {
@@ -25,14 +28,14 @@ const Cart = () => {
                           <p>{item.name}</p>
                         </div>
                         <div className="cart_inc">
-                          <button onClick={() => decCart(item)}><FaMinus /></button>
+                          <button onClick={() => decCart(item.id)}><FaMinus /></button>
                           <span>{item.qty}</span>
-                          <button onClick={() => incCart(item)}><FaPlus /></button>
+                          <button onClick={() => incCart(item.id)}><FaPlus /></button>
                         </div>
                         <div className="cart_price">
                           <h4>&#8358;{item.price}</h4>
                           <h3>&#8358;{item.price * item.qty}</h3>
-                          <button onClick={() => removeFromCart(item)}><FaTimes /></button>
+                          <button onClick={() => removeFromCart(item.id)}><FaTimes /></button>
                         </div>
                       </div>
                     )

@@ -10,6 +10,20 @@
   border: 1px solid #f1f1f1;
   margin: 20px 0px;
 }
+.cart_item{
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  gap: 30px;
+}
+.cart_item img{
+  width: 300px;
+}
+.cart_item h3{
+  text-align: center;
+}
 .cart_box{
   display: flex;
   position: relative;
