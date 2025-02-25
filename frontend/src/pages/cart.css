@@ -12,14 +12,15 @@
 }
 .cart_item{
   display: flex;
+  margin: 40px 0px;
   gap: 20px;
   justify-content: center;
-  align-content: center;
+  align-items: center;
   flex-direction: column;
   gap: 30px;
 }
 .cart_item img{
-  width: 300px;
+  width: 400px;
 }
 .cart_item h3{
   text-align: center;

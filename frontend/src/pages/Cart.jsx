@@ -15,7 +15,7 @@ const Cart = () => {
           cart.length === 0 ? (
             <div className='cart_item'>
               <img src="https://ebeosi.com.ng/public/assets/img/nothing.svg" alt="" />
-              <h3>No Item</h3>
+              <h2>Your Cart is Empty</h2>
             </div>
           ) : (
               <div className='cart_items'>
