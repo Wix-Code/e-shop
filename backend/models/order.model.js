@@ -9,7 +9,7 @@ const orderSchema = new mongoose.Schema({
     type: String, required: true
   },
   state: {
-    type: Number, required: true
+    type: String, required: true
   },
   city: {
     type: String, required: true
@@ -20,11 +20,14 @@ const orderSchema = new mongoose.Schema({
   phoneNo: {
     type: String, required: true
   },
+  email: {
+    type: String, required: true
+  },
   status:{
     type:String,
     enum:['Pending','Dispatched','Out for delivery','Cancelled'],
     default:'Pending'
-},
+  },
   userId: {
     type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true
   },
@@ -33,8 +36,10 @@ const orderSchema = new mongoose.Schema({
       productId: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
       qty: { type: Number, required: true },
       price: { type: Number, required: true },
-      img: { type: Number, required: true },
-      comment: { type: mongoose.Schema.Types.ObjectId, ref: "Comment" }
+      //img: { type: String, required: true },
+      title: { type: String, required: true },
+      //desc: { type: String, required: true },
+      //comment: { type: mongoose.Schema.Types.ObjectId, ref: "Comment" }
     }
   ],
   amount: {
