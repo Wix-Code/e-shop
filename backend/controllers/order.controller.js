@@ -52,7 +52,7 @@ export const order = async (req, res) => {
   }
 }
 
-export const getOrder = async (req, res) => {
+export const verifyPayment = async (req, res) => {
   try {
     const { reference, orderId } = req.body;
     if (!reference || !orderId) return res.status(400).json({ success: false, message: "Payment reference and Order ID are required" });
@@ -78,5 +78,16 @@ export const getOrder = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).json({ success: false, message: "Failed to verify payment" });
+  }
+}
+
+export const getUserOrders = async (req, res) => {
+  const userId = req.user;
+  try {
+    const orders = await Order.find({userId})
+    res.status(200).json({success:true, message: "User orders fetched", data:orders})
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({success:false, message:"User orders not fetched"})
   }
 }
