@@ -5,10 +5,16 @@ import { FaPlus, FaMinus, FaArrowLeft } from "react-icons/fa6";
 import { FaTimes } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import CartIcon from '../subpages/CartIcon';
+import { useDispatch, useSelector } from 'react-redux';
+import { decCart, incCart, removeFromCart, selectCartTotal } from "../slices/cartSlice"
+
 
 const Cart = () => {
 
-  const { cart, cartQty, decCart, incCart, removeFromCart } = useContext(createStore)
+  //const { cart, cartQty, decCart, incCart, removeFromCart } = useContext(createStore)
+  const cartTotal = useSelector(selectCartTotal);
+  const cart = useSelector((state) => state.cart.cart);
+  const dispatch = useDispatch();
   console.log(cart)
   return (
     <div className='cart'>
@@ -31,14 +37,14 @@ const Cart = () => {
                           <p>{item.name}</p>
                         </div>
                         <div className="cart_inc">
-                          <button onClick={() => decCart(item.id)}><FaMinus /></button>
+                          <button onClick={() => dispatch(decCart(item.id))}><FaMinus /></button>
                           <span>{item.qty}</span>
-                          <button onClick={() => incCart(item.id)}><FaPlus /></button>
+                          <button onClick={() => dispatch(incCart(item.id))}><FaPlus /></button>
                         </div>
                         <div className="cart_price">
                           <h4>&#8358;{item.price}</h4>
                           <h3>&#8358;{item.price * item.qty}</h3>
-                          <button onClick={() => removeFromCart(item.id)}><FaTimes /></button>
+                          <button onClick={() => dispatch(removeFromCart(item.id))}><FaTimes /></button>
                         </div>
                       </div>
                     )
@@ -46,7 +52,7 @@ const Cart = () => {
                 }
                 <div className='cart_total'>
                   <p>Subtotal</p>
-                  <h3>&#8358;{cartQty}</h3>
+                  <h3>&#8358;{cartTotal}</h3>
                 </div>
                 <div className='cart_rtn'>
                   <Link to="/">

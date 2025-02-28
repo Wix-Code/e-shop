@@ -3,11 +3,17 @@ import { dummyData } from '../dummy/data'
 import "./wishlist.css"
 import { MdDelete } from "react-icons/md";
 import { createStore } from '../libs/context'
+import { addToCart } from '../slices/cartSlice';
+import { deleteFromWishlist } from '../slices/wishlistSlice';
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
 
 const Wishlist = () => {
 
-   const { addToCart, wishlist, deleteFromWishlist } = useContext(createStore)
+  //const { addToCart, wishlist, deleteFromWishlist } = useContext(createStore)
+  const cart = useSelector((state) => state.cart.cart);
+  const wishlist = useSelector((state) => state.wishlist.wishlist);
+  const dispatch = useDispatch();
   return (
     <div className='wishlist'>
       <h3>Wishlist</h3>
@@ -23,9 +29,9 @@ const Wishlist = () => {
                   <div className="card_img">
                     <img src={item.image} alt="" onClick={() => setOpen(!open)} />
                     <div className="card_wish">
-                      <p onClick={() => deleteFromWishlist(item.id)}><MdDelete /></p>
+                      <p onClick={() => dispatch(deleteFromWishlist(item.id))}><MdDelete /></p>
                     </div>
-                    <button onClick={()=>addToCart(item)}>Add to cart</button>
+                    <button onClick={()=>dispatch(addToCart(item))}>Add to cart</button>
                     <h5>{item.instock}</h5>
                   </div>
                   <Link to={`/product/${item.id}`}>

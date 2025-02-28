@@ -2,9 +2,10 @@ import React, { useContext } from 'react'
 import Slider from "react-slick";
 import { createStore } from '../libs/context';
 import Card from './Card';
+import { dummyData } from '../dummy/data';
 
 const Drinks = () => {
-  const { data } = useContext(createStore)
+  //const { data } = useContext(createStore)
     
     var settings = {
       infinite: false,
@@ -46,7 +47,7 @@ const Drinks = () => {
       <div className='feature'>
         <Slider {...settings}>
           {
-            data.map((item) => {
+            dummyData.map((item) => {
               return (
                <Card item={item} key={item.id} />
               )

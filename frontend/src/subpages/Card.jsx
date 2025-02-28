@@ -7,10 +7,18 @@ import "slick-carousel/slick/slick-theme.css";
 import { createStore } from '../libs/context';
 import { Link } from 'react-router-dom';
 import { FaCodeCompare } from 'react-icons/fa6';
+import { useDispatch, useSelector } from 'react-redux';
+import { addCompare } from '../slices/compareSlice';
+import { addToCart } from '../slices/cartSlice';
+import { addWishlist } from '../slices/wishlistSlice';
 
 
 const Card = ({ item }) => {
-  const { addToCart, addCompare, addWishlist } = useContext(createStore)
+  //const { addToCart, addCompare, addWishlist } = useContext(createStore)
+  const wishlist = useSelector((state) => state.wishlist.wishlist);
+  const cart = useSelector((state) => state.cart.cart);
+  const compare = useSelector((state) => state.compare.compare);
+  const dispatch = useDispatch();
   
   var settings = {
     dots: true,
@@ -60,10 +68,10 @@ const Card = ({ item }) => {
         <div className="card_img">
           <img src={item.image} alt="" />
           <div className="card_wish">
-            <p onClick={() => addCompare(item)}><FaCodeCompare /></p>
-            <p onClick={() => addWishlist(item)}><FaHeart /></p>
+            <p onClick={() => dispatch(addCompare(item))}><FaCodeCompare /></p>
+            <p onClick={() => dispatch(addWishlist(item))}><FaHeart /></p>
           </div>
-          <button onClick={()=>addToCart(item)}>Add to cart</button>
+          <button onClick={()=>dispatch(addToCart(item))}>Add to cart</button>
           <h5>{item.instock}</h5>
         </div>
         <Link to={`/product/${item.id}`}>

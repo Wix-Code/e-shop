@@ -2,16 +2,22 @@ import React, { useContext } from 'react'
 import "./compare.css"
 import { dummyData } from '../dummy/data'
 import { createStore } from '../libs/context';
+import { useDispatch, useSelector } from 'react-redux';
+import { resetCompare } from '../slices/compareSlice';
+import { addToCart } from '../slices/cartSlice';
 
 const Compare = () => {
 
-  const { addToCart, compare, resetCompare } = useContext(createStore);
+  //const { addToCart, compare, resetCompare } = useContext(createStore);
+  const cart = useSelector((state) => state.cart.cart);
+  const compare = useSelector((state) => state.compare.compare);
+  const dispatch = useDispatch();
 
   return (
     <div className='compare'>
       <div className="compare_reset">
         <h3>Compare Products</h3>
-        <h5 onClick={resetCompare}>Reset Compare List</h5>
+        <h5 onClick={()=>dispatch(resetCompare())}>Reset Compare List</h5>
       </div>
       {
         compare.length === 0 ?
@@ -44,7 +50,7 @@ const Compare = () => {
                     <span>DeRok</span>
                   </div>
                   <div className="compare_btn">
-                    <button onClick={()=>addToCart(item)}>Add to cart</button>
+                    <button onClick={()=>dispatch(addToCart(item))}>Add to cart</button>
                   </div>
                 </div>
               )

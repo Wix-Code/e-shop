@@ -12,10 +12,17 @@ import { CiFaceFrown } from "react-icons/ci";
 import { BsCalendar2CheckFill } from "react-icons/bs";
 import { LiaTimesSolid } from "react-icons/lia";
 import MobileNav from './MobileNav';
+import { useSelector } from 'react-redux';
+import { selectCartTotal } from '../slices/cartSlice';
 
 const Navbar = () => {
 
-  const { cart, cartQty, compare, wishlist } = useContext(createStore)
+  const cart = useSelector((state) => state.cart.cart);
+  const wishlist = useSelector((state) => state.wishlist.wishlist);
+  const compare = useSelector((state) => state.compare.compare);
+  const cartTotal = useSelector(selectCartTotal);
+
+  //const { cart, cartQty, compare, wishlist } = useContext(createStore)
   const [openCat, setOpenCat] = useState(false)
   const [cartOpen, setCartOpen] = useState(false)
   const [openSideBar, setOpenSideBar] = useState(false)
@@ -165,7 +172,7 @@ const Navbar = () => {
           <Link >
             <div className='cart_btn' onClick={() => setCartOpen (!cartOpen)}>
               <FaCartShopping style={{fontSize: "22px"}} />
-              <h4>&#8358;{new Intl.NumberFormat('en-US').format(cartQty)}</h4>
+              <h4>&#8358;{new Intl.NumberFormat('en-US').format(cartTotal)}</h4>
               <p>({cart.length} Items)</p>
               {
                 cartOpen && (
@@ -194,7 +201,7 @@ const Navbar = () => {
                             <hr />
                             <div className="cart_tot">
                               <p>Sub Total</p>
-                              <h2>&#8358;{new Intl.NumberFormat('en-US').format(cart.reduce((acc, curr) => acc + curr.price, 0))}</h2>
+                              <h2>&#8358;{new Intl.NumberFormat('en-US').format(cartTotal)}</h2>
                             </div>
                             <hr />
                             <div className="cart_lin">

@@ -34,7 +34,7 @@ import { createStore } from '../libs/context';
 
 const Featured = () => {
 
-  const { data } = useContext(createStore)
+  //const { data } = useContext(createStore)
   
   var settings = {
     infinite: false,
@@ -87,7 +87,7 @@ const Featured = () => {
       <div className='feature'>
         <Slider {...settings}>
           {
-            data.map((item) => {
+            dummyData.map((item) => {
               return (
                <Card item={item} key={item.id} />
               )
