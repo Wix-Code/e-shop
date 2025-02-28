@@ -83,3 +83,9 @@ form button:hover{
 .forgot span:hover{
   color: var(--primary);
 }
+
+@media screen and (max-width : 700px) {
+  form{
+    padding: 10px;
+  }
+}
