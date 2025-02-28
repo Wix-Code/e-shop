@@ -9,6 +9,8 @@ import Compare from './pages/Compare'
 import Wishlist from './pages/Wishlist'
 import PrivateRoute from './pages/UserDashBoard'
 import About from './pages/About'
+import Register from './pages/Register'
+import Login from './pages/Login'
 
 const Rout = () => {
   return (
@@ -19,6 +21,8 @@ const Rout = () => {
       <Route path="/cart" element={<Cart />} />
       <Route path="/product/:id" element={<ItemSinglePage />} />
       <Route path="/about-us" element={<About />} />
+      <Route path="/registration" element={<Register />} />
+      <Route path="/login" element={<Login />} />
       <Route path="/*" element={<PrivateRoute />} />
     </Routes>
   )

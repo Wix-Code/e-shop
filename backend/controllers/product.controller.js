@@ -18,9 +18,40 @@ export const createProduct = async (req, res) => {
   }
 }
 
-export const getAllProducts = async (req,res) => {
+export const getAllProducts = async (req, res) => {
+  const { sort, cat, brand } = req.body;
   try {
-    const product = await Product.find({});
+    
+    const sortOptions = {};
+    const filterCategory = {};
+    const filterBrand = {};
+
+    if (brand) {
+      filterBrand.brand = brand;
+    }
+
+    if (cat) {
+      filterCategory.cat = cat;
+    }
+
+    if (sort === "newest") {
+      sortOptions.createdAt = -1;
+    }
+    if (sort === "oldest") {
+      sortOptions.createdAt = 1;
+    }
+    if (sort === "lowest") {
+      sortOptions.price = 1;
+    }
+    if (sort === "highest") {
+      sortOptions.price = -1;
+    }
+
+    if (!Object.keys(sortOptions).length) {
+      sortOptions.createdAt = -1;
+    }
+
+    const product = await Product.find(filterCategory).sort(sortOptions);
     res.status(200).json({success: true, message: "Products Fetched", product})
   } catch (error) {
     console.log(error);
