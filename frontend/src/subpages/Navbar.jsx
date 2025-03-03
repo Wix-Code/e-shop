@@ -52,7 +52,7 @@ const Navbar = () => {
             <img src="https://ebeosi.com.ng/public/uploads/all/keKlwReqyUyfJmfK6M9bFB8JVF9DgzDQ9ZFBBNmm.png" alt="" />
           </div>
           <div className='nav_inp'>
-            <input type="text" placeholder="I am searching for.." id="" />
+            <input type="text" placeholder="I am searching for..." id="" />
             <button><IoSearchOutline /></button>
           </div>
           <div className='nav_notify'>
