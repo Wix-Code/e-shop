@@ -12,6 +12,7 @@ import About from './pages/About'
 import Register from './pages/Register'
 import Login from './pages/Login'
 import ForgotPassword from './pages/ForgotPassword'
+import Order from './pages/Order'
 
 const Rout = () => {
   return (
@@ -22,6 +23,7 @@ const Rout = () => {
       <Route path="/cart" element={<Cart />} />
       <Route path="/product/:id" element={<ItemSinglePage />} />
       <Route path="/about-us" element={<About />} />
+      <Route path="/order" element={<Order />} />
       <Route path="/registration" element={<Register />} />
       <Route path="/login" element={<Login />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />

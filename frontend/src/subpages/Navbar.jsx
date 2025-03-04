@@ -206,7 +206,7 @@ const Navbar = () => {
                             <hr />
                             <div className="cart_lin">
                               <Link to="/cart"><button>View Cart</button></Link>
-                              <Link to="/checkout"><button>Checkout</button></Link>
+                              <Link to="/order"><button>Checkout</button></Link>
                             </div>
                           </div>
                       )
