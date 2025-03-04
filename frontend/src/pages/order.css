@@ -1,0 +1,73 @@
+.order{
+  max-width: 1150px;
+  padding: 30px 0px;
+  margin: auto;
+  display: flex;
+  gap: 60px;
+}
+.order1{
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.order1 h2{
+  color: var(--primary);
+}
+.order_form{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.ordering{
+  display: flex;
+  width: 100%;
+  gap: 10px;
+}
+.order_inp{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+}
+.order_inp label{
+  font-size: 16px;
+  color: var(--gray-dark);
+  font-weight: 600;
+}
+.order_inp input{
+  width: 100%;
+  height: 46px;
+  font-size: 15px;
+  padding: 0px 20px;
+  border: 1px solid var(--soft-light);
+}
+.order_inp input:focus{
+  border: 1px solid var(--primary);
+  background: #FFFFFF;
+}
+.order2{
+  flex: 1;
+}
+.order_tot{
+  border: 1px solid var(--soft-light);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.charges{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--gray-dark);
+}
+.order_tot button{
+  width: 100%;
+  background: var(--primary);
+  color: #FFFFFF;
+  height: 44px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
