@@ -15,3 +15,61 @@
 .purchase_img img{
   width: 300px;
 }
+.purchase_table{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+.purchase_row{
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid var(--soft-light);
+  justify-content: center;
+}
+.purchase_del{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.purchase_del span{
+  width: 100%;
+  background: var(--light-pink);
+  text-align: center;
+  padding: 10px 0px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--gray-dark);
+}
+.purchase_del p{
+  font-size: 15px;
+  color: var(--gray-dark);
+}
+.purchase_del button{
+  width: 100%;
+  background: var(--primary);
+  text-align: center;
+  color: #FFFFFF;
+  padding: 10px 0px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.5s;
+}
+.purchase_del button:hover{
+  background: var(--hov-primary);
+}
+.purchase_cell img{
+  width: 140px;
+  height: 150px;
+  object-fit: cover;
+}
+.purchase_del h4{
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--primary);
+}

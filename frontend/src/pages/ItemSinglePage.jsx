@@ -6,10 +6,14 @@ import { FaFacebookF, FaLinkedinIn, FaMinus, FaPlus, FaShoppingCart, FaStar, FaT
 import { dummyData } from '../dummy/data';
 import Slider from 'react-slick';
 import { createStore } from '../libs/context';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart, decCart, incCart } from '../slices/cartSlice';
 
 const ItemSinglePage = () => {
 
-  const { decCart, incCart } = useContext(createStore)
+  //const { decCart, incCart } = useContext(createStore)
+  const cart = useSelector((state) => state.cart.cart);
+  const dispatch = useDispatch();
 
   const image = ["https://ebeosi.com.ng/public/uploads/all/qSySmwv8CDTXfrztGKUagb5JFMeENtfjkoT5a1Go.jpg", "https://ebeosi.com.ng/public/uploads/all/XKC1hMAgPpxs54QmMlOwk9XOfpWsj6x6y3sp7vBQ.jpg", "https://ebeosi.com.ng/public/uploads/all/oCx7Y2R8To7ewEXhtvYFRsfWxhZKjghy6cIJioRa.jpg","https://ebeosi.com.ng/public/uploads/all/MKUDDB8vtJPOHhkwY2VpLZTYynd8EPuf4iLUPQlh.jpg"]
   const [img, setImg] = useState(image[0])
@@ -98,9 +102,9 @@ const ItemSinglePage = () => {
           <div className="sin_add">
             <p>Quantity</p>
             <div className="sin_addto">
-              <button onClick={() => decCart(item.id)}><FaMinus /></button>
+              <button onClick={() => dispatch(decCart(item.id))}><FaMinus /></button>
               <span>1</span>
-              <button onClick={() => incCart(item.id)}><FaPlus /></button>
+              <button onClick={() => dispatch(incCart(item.id))}><FaPlus /></button>
             </div>
           </div>
           <div className="sin_total">
@@ -108,7 +112,7 @@ const ItemSinglePage = () => {
             <h2>&#8358;{new Intl.NumberFormat('en-US').format(4000)}</h2>
           </div>
           <div className="sin_btns">
-            <div className="sin_cart">
+            <div onClick={() => dispatch(addToCart(item))} className="sin_cart">
               <FaShoppingCart />
               <h4>Add to cart</h4>
             </div>

@@ -58,7 +58,9 @@ const Cart = () => {
                   <Link to="/">
                     <h4><FaArrowLeft /> Return to shop</h4>
                   </Link>
-                  <button>Continue to Shipping</button>
+                  <Link to="/order">
+                    <button>Continue to Shipping</button>
+                  </Link>
                 </div>
               </div>
           )
