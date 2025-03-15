@@ -91,19 +91,24 @@ export const productReview = async (req, res) => {
       return res.status(403).json({ message: "You can only review products you have purchased." });
     }
 
-    /*const product = await Product.findById(id);
+    const product = await Product.findById(id);
     if (!product) {
       return res.status(404).json({ success: false, message: "Product not found" });
     }
-    const hasRated = product.rate((rate) => rate.userId.toString() === userId);
+    if (!Array.isArray(product.rate)) {
+        return res.status(500).json({ success: false, message: "Product rating data is corrupted" });
+    }
+
+    // Check if the user has already rated the product
+    const hasRated = product.rate.some((r) => r.userId.toString() === userId);
 
     if (hasRated) {
       return res.status(409).json({ success: false, message: "You have already reviewed this product" });
     }
     product.rate.push({ userId, rate: Number(rate) });
 
-    await product.save();*/
-    res.status(200).json({ success: true, message: "Product fetched", hasPurchased });
+    await product.save();
+    res.status(200).json({ success: true, message: "Product fetched", product });
   } catch (error) {
     console.log(error);
     res.status(500).json({ success: false, message: "Failed to review product" });

@@ -29,7 +29,7 @@ const productSchema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true
   },
-  comment: { type: mongoose.Schema.Types.ObjectId, ref: "Comment" }
+  comment: { type: Array, required: false }
 }, { timestamps: true });
 
 const Product = mongoose.model('Product', productSchema);
