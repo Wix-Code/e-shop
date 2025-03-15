@@ -7,10 +7,12 @@ import Rout from './Rout'
 import Footer from './subpages/Footer'
 import ResponsiveNavbar from './subpages/ResponsiveNavbar'
 import { createStore } from './libs/context'
+import { ToastContainer } from 'react-toastify'
 
 function App() {
   return (
     <>
+       <ToastContainer />
       <div>
         <Navbar />
         <Rout />

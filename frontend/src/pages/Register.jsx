@@ -1,8 +1,13 @@
 import React, { useState } from 'react'
 import "./auth.css"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import { registerUser } from '../slices/authSlice';
 
 const Register = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { error } = useSelector((state) => state.auth);
 
   const [userData, setUserData] = useState({
     fname: "",
@@ -20,7 +25,8 @@ const Register = () => {
     e.preventDefault();
     console.log(userData) 
     try {
-      
+      const result = await dispatch(registerUser(userData));
+      if (result.payload) navigate("/login");
     } catch (error) {
       console.log(error)
     }
