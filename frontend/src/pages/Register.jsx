@@ -18,7 +18,12 @@ const Register = () => {
 
   const handleSubmit = async (e) => { 
     e.preventDefault();
-    console.log(userData)  
+    console.log(userData) 
+    try {
+      
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
