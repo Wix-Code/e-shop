@@ -12,8 +12,8 @@ import { CiFaceFrown } from "react-icons/ci";
 import { BsCalendar2CheckFill } from "react-icons/bs";
 import { LiaTimesSolid } from "react-icons/lia";
 import MobileNav from './MobileNav';
-import { useSelector } from 'react-redux';
-import { selectCartTotal } from '../slices/cartSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { removeFromCart, selectCartTotal } from '../slices/cartSlice';
 
 const Navbar = () => {
 
@@ -21,6 +21,7 @@ const Navbar = () => {
   const wishlist = useSelector((state) => state.wishlist.wishlist);
   const compare = useSelector((state) => state.compare.compare);
   const cartTotal = useSelector(selectCartTotal);
+  const dispatch = useDispatch();
 
   //const { cart, cartQty, compare, wishlist } = useContext(createStore)
   const [openCat, setOpenCat] = useState(false)
@@ -194,7 +195,7 @@ const Navbar = () => {
                                   <h5>{item.name}</h5>
                                   <p>&#8358;{new Intl.NumberFormat('en-US').format(item.price)}</p>
                                 </div>
-                                <LiaTimesSolid style={{fontSize: "30px"}}/>
+                                <LiaTimesSolid  onClick={() => dispatch(removeFromCart(item.id))} style={{fontSize: "30px"}}/>
                               </div>
                             ))}
                             </div>

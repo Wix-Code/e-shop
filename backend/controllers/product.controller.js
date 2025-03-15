@@ -1,4 +1,6 @@
+import Order from "../models/order.model.js";
 import Product from "../models/product.model.js";
+import mongoose from "mongoose"
 
 export const createProduct = async (req, res) => {
   const { userId, title, description, cat, brand, img, inStock, price } = req.body;
@@ -70,5 +72,40 @@ export const getSingleproduct = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).json({ success: false, message: "Failed to fetch product" });
+  }
+}
+
+export const productReview = async (req, res) => {
+  const { id } = req.params;
+  const {orderId, rate } = req.body;
+  const userId = req.user;
+
+  if (!userId) {
+    return res.status(401).json({ success: false, message: "Unauthorized" });
+  }
+  try {
+    
+    const hasPurchased = await Order.findOne({ _id: new mongoose.Types.ObjectId(orderId), status: "paid","products.productId": new mongoose.Types.ObjectId(id) });
+  
+    if (!hasPurchased) {
+      return res.status(403).json({ message: "You can only review products you have purchased." });
+    }
+
+    /*const product = await Product.findById(id);
+    if (!product) {
+      return res.status(404).json({ success: false, message: "Product not found" });
+    }
+    const hasRated = product.rate((rate) => rate.userId.toString() === userId);
+
+    if (hasRated) {
+      return res.status(409).json({ success: false, message: "You have already reviewed this product" });
+    }
+    product.rate.push({ userId, rate: Number(rate) });
+
+    await product.save();*/
+    res.status(200).json({ success: true, message: "Product fetched", hasPurchased });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: "Failed to review product" });
   }
 }
