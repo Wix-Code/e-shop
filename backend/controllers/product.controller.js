@@ -140,17 +140,56 @@ export const productComment = async (req, res) => {
     }
 
     // Check if the user has already rated the product
-    const hasCommented = product.comment.some((r) => r.userId.toString() === userId);
+    const hasCommented = product.comment.some((r) => r.userId.toString() === userId.toString());
 
     if (hasCommented) {
       return res.status(404).json({ success: false, message: "You have already reviewed this product" });
     }
-    product.comment.push({ userId, comment: comment });
+    product.comment.push({ userId: new mongoose.Types.ObjectId(userId), comment });
 
     await product.save();
     res.status(200).json({ success: true, message: "Product fetched", product });
   } catch (error) {
     console.log(error);
     res.status(500).json({ success: false, message: "Failed to comment about the product" });
+  }
+}
+
+export const deleteProduct = async (req, res) => { 
+  const { id } = req.params;
+  const userId = req.user;
+  if (!userId) {
+    return res.status(401).json({ success: false, message: "Unauthorized" });
+  }
+  try {
+    const product = await Product.findById(id);
+    if (!product) {
+      return res.status(404).json({ success: false, message: "Product not found" });
+    }
+    const deleteProduct = await Product.findByIdAndDelete(id)
+    res.status(200).json({ success: true, message: "Product deleted successfully", deleteProduct });
+    
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ success: false, message: "Failed to delete product" });
+  }
+}
+
+export const updateProduct = async (req, res) => { 
+  const { id } = req.params;
+  const userId = req.user;
+  if (!userId) {
+    return res.status(401).json({ success: false, message: "Unauthorized" });
+  }
+  try {
+    const product = await Product.findByIdAndUpdate(id, req.body, { new: true });
+    if (!product) {
+      return res.status(404).json({ success: false, message: "Product not found" });
+    }
+    res.status(200).json({ success: true, message: "Product updated successfully", product });
+    
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ success: false, message: "Failed to update product" });
   }
 }
