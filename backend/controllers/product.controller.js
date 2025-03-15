@@ -21,19 +21,19 @@ export const createProduct = async (req, res) => {
 }
 
 export const getAllProducts = async (req, res) => {
-  const { sort, cat, brand } = req.body;
+  const { sort, cat, brand } = req.query;
   try {
     
     const sortOptions = {};
-    const filterCategory = {};
-    const filterBrand = {};
+    const filter = {};
+    //const filterBrand = {};
 
     if (brand) {
-      filterBrand.brand = brand;
+      filter.brand = brand;
     }
 
     if (cat) {
-      filterCategory.cat = cat;
+      filter.cat = cat;
     }
 
     if (sort === "newest") {
@@ -53,7 +53,7 @@ export const getAllProducts = async (req, res) => {
       sortOptions.createdAt = -1;
     }
 
-    const product = await Product.find(filterCategory).sort(sortOptions);
+    const product = await Product.find(filter).sort(sortOptions);
     res.status(200).json({success: true, message: "Products Fetched", product})
   } catch (error) {
     console.log(error);
@@ -152,6 +152,17 @@ export const productComment = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).json({ success: false, message: "Failed to comment about the product" });
+  }
+}
+
+export const getProductsByCategory = async (req, res) => { 
+  const { cat } = req.params;
+  try {
+    const products = await Product.find({ cat });
+    res.status(200).json({ success: true, message: "Products fetched", products });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: "Failed to fetch products" });
   }
 }
 
