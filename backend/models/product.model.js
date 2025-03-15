@@ -20,9 +20,13 @@ const productSchema = new mongoose.Schema({
   img: {
     type: Array, required: true
   },
-  rate: {
-    type: Array, required: false
-  },
+  rate:  [
+    {
+      userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+      rate: { type: Number, required: false, min: 1, max: 5 },
+      createdAt: { type: Date, default: Date.now }
+    }
+  ],
   inStock: {
     type: Boolean, required: true
   },

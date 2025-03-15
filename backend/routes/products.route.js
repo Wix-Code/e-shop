@@ -9,7 +9,7 @@ router.get("/", getAllProducts)
 router.get("/:id", getSingleproduct)
 router.delete("/:id", VerifyToken, deleteProduct)
 router.post("/:id", VerifyToken, updateProduct)
-router.post("/:id/like",VerifyToken, productReview)
+router.post("/:id/rate",VerifyToken, productReview)
 router.post("/:id/comment",VerifyToken, productComment)
 
 export default router;

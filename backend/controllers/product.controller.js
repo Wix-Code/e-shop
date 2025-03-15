@@ -100,10 +100,10 @@ export const productReview = async (req, res) => {
     }
 
     // Check if the user has already rated the product
-    const hasRated = product.rate.some((r) => r.userId.toString() === userId);
+    const hasRated =  product.rate.some((r) => r.userId.toString() === new mongoose.Types.ObjectId(userId).toString());
 
     if (hasRated) {
-      return res.status(409).json({ success: false, message: "You have already reviewed this product" });
+      return res.status(409).json({ success: false, message: "You have already rated this product" });
     }
     product.rate.push({ userId, rate: Number(rate) });
 
@@ -140,7 +140,7 @@ export const productComment = async (req, res) => {
     }
 
     // Check if the user has already rated the product
-    const hasCommented = product.comment.some((r) => r.userId.toString() === userId.toString());
+    const hasCommented = product.comment.some((r) => r.userId.toString() === new mongoose.Types.ObjectId(userId).toString());
 
     if (hasCommented) {
       return res.status(404).json({ success: false, message: "You have already reviewed this product" });
