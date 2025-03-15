@@ -114,3 +114,43 @@ export const productReview = async (req, res) => {
     res.status(500).json({ success: false, message: "Failed to review product" });
   }
 }
+
+export const productComment = async (req, res) => {
+  const { id } = req.params;
+  const {orderId, comment } = req.body;
+  const userId = req.user;
+
+  if (!userId) {
+    return res.status(401).json({ success: false, message: "Unauthorized" });
+  }
+  try {
+    
+    const hasPurchased = await Order.findOne({ _id: new mongoose.Types.ObjectId(orderId), status: "paid","products.productId": new mongoose.Types.ObjectId(id) });
+  
+    if (!hasPurchased) {
+      return res.status(403).json({ message: "You can only review products you have purchased." });
+    }
+
+    const product = await Product.findById(id);
+    if (!product) {
+      return res.status(404).json({ success: false, message: "Product not found" });
+    }
+    if (!Array.isArray(product.comment)) {
+        return res.status(500).json({ success: false, message: "Product rating data is corrupted" });
+    }
+
+    // Check if the user has already rated the product
+    const hasRated = product.comment.some((r) => r.userId.toString() === userId);
+
+    if (hasRated) {
+      return res.status(409).json({ success: false, message: "You have already reviewed this product" });
+    }
+    product.comment.push({ userId, rate: Number(rate) });
+
+    await product.save();
+    res.status(200).json({ success: true, message: "Product fetched", product });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: "Failed to review product" });
+  }
+}
