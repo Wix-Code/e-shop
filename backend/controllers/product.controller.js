@@ -140,17 +140,17 @@ export const productComment = async (req, res) => {
     }
 
     // Check if the user has already rated the product
-    const hasRated = product.comment.some((r) => r.userId.toString() === userId);
+    const hasCommented = product.comment.some((r) => r.userId.toString() === userId);
 
-    if (hasRated) {
-      return res.status(409).json({ success: false, message: "You have already reviewed this product" });
+    if (hasCommented) {
+      return res.status(404).json({ success: false, message: "You have already reviewed this product" });
     }
-    product.comment.push({ userId, rate: Number(rate) });
+    product.comment.push({ userId, comment: comment });
 
     await product.save();
     res.status(200).json({ success: true, message: "Product fetched", product });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ success: false, message: "Failed to review product" });
+    res.status(500).json({ success: false, message: "Failed to comment about the product" });
   }
 }
