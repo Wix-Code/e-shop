@@ -32,7 +32,7 @@ const Navbar = () => {
 
   console.log(pathname)
 
-  const user = true
+  const user = false
   
   return (
     <div className='navbar'>
@@ -113,9 +113,9 @@ const Navbar = () => {
                 </div>
               ) : (
                 <div className='nav_log'>
-                    <p>Login</p>
-                    <span>|</span>
-                  <p>Registration</p>
+                    <Link to="/login"><p>Login</p></Link>
+                      <span>|</span>
+                    <Link to="registration"><p>Registration</p></Link>
                 </div>
               )
             }

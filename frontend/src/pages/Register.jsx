@@ -18,7 +18,6 @@ const Register = () => {
 
   const handleSubmit = async (e) => { 
     e.preventDefault();
-    //const errors = await Yup.Schema.validate(userData)
     console.log(userData)  
   }
 
