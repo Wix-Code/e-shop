@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./auth.css"
 import { Formik } from 'formik'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { loginUser } from '../slices/authSlice'
+import { toast } from 'react-toastify'
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -9,11 +12,8 @@ const Login = () => {
   const { error } = useSelector((state) => state.auth);
 
   const [userData, setUserData] = useState({
-    fname: "",
-    lname: "",
     email: "",
-    password: "",
-    confirmPassword: "",
+    password: ""
   })
 
   const handleChange = (e) => {
@@ -24,8 +24,14 @@ const Login = () => {
     e.preventDefault();
     console.log(userData) 
     try {
-      const result = await dispatch(registerUser(userData));
-      if (result.payload) navigate("/");
+      const result = await dispatch(loginUser(userData));
+      if (result.payload.success === true) {
+        toast(result.payload.message)
+        navigate("/")
+      } else {
+        toast.error(result.payload.message)
+        //setUserData({ email: "", password: "" })
+      };
       console.log(result)
     } catch (error) {
       console.log(error)
@@ -38,11 +44,11 @@ const Login = () => {
           <h2>Welcome Back !</h2>
           <div className='form_inp'>
             <label htmlFor="username">Email</label>
-            <input type="email" onChange={handleChange} id="username" name="email" placeholder='Email' />
+            <input type="email" onChange={handleChange} required name="email" placeholder='Email' />
           </div>
           <div className='form_inp'>
             <label htmlFor="username">Password</label>
-            <input type="text" id="username" onChange={handleChange} name="password" placeholder='Password' />
+            <input type="text" id="username" required onChange={handleChange} name="password" placeholder='Password' />
           </div>
           <div className="forgot">
             <Link to="/forgot-password"><span>Forgot Password?</span></Link>

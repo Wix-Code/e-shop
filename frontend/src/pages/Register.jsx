@@ -26,7 +26,12 @@ const Register = () => {
     console.log(userData) 
     try {
       const result = await dispatch(registerUser(userData));
-      if (result.payload) navigate("/login");
+     if (result.payload.success === true) {
+        toast(result.payload.message)
+        navigate("/login")
+     } else {
+       toast(result.payload.message)
+      };
     } catch (error) {
       console.log(error)
     }

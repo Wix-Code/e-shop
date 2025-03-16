@@ -15,7 +15,7 @@ export const registerUser = createAsyncThunk("auth/register", async (userData, {
 // Login User
 export const loginUser = createAsyncThunk("auth/login", async (userData, { rejectWithValue }) => {
   try {
-    const { data } = await axios.post(`${API_URL}/login`, userData);
+    const { data } = await Api.post(`/auth/login`, userData);
     localStorage.setItem("user", JSON.stringify(data));
     return data;
   } catch (error) {
