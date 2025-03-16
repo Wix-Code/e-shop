@@ -66,16 +66,16 @@ const Card = ({ item }) => {
     <div className="cards">
       <div className='card' key={item.id}>
         <div className="card_img">
-          <img src={item.image} alt="" />
+          <img src={item.img?.[0]} alt="" />
           <div className="card_wish">
             <p onClick={() => dispatch(addCompare(item))}><FaCodeCompare /></p>
             <p onClick={() => dispatch(addWishlist(item))}><FaHeart /></p>
           </div>
           <button onClick={()=>dispatch(addToCart(item))}>Add to cart</button>
-          <h5>{item.instock}</h5>
+          {item.inStock === "true" ? <h5>outStock</h5> : <h5>inStock</h5>}
         </div>
-        <Link to={`/product/${item.id}`}>
-          <span>{item.name.slice(0, 40)}...</span>
+        <Link to={`/product/${item._id}`}>
+          <span>{item.title?.slice(0, 40)}...</span>
         </Link>
         <h3>&#8358;{new Intl.NumberFormat('en-US').format(item?.price)}</h3>
       </div>

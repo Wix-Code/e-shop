@@ -1,41 +1,24 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { dummyData } from '../dummy/data'
 import Card from './Card'
 import './featured.css'
 import Slider from "react-slick";
 
-/*function SampleNextArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{ ...style, display: "block", background: "red" }}
-      onClick={onClick}
-    />
-  );
-}
-
-function SamplePrevArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{ ...style, display: "block", background: "green" }}
-      onClick={onClick}
-    />
-  );
-}*/
-
 
 import { FaHeart } from 'react-icons/fa';
 import { createStore } from '../libs/context';
-
-
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProducts } from '../slices/productSlice';
 
 const Featured = () => {
+  const dispatch = useDispatch();
+  const { products, loading, error } = useSelector((state) => state.products);
 
-  //const { data } = useContext(createStore)
-  
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
+  //if (loading) return <h2>Loading...</h2>;
+  //if (error) return <h2>Error: {error.message}</h2>;
   var settings = {
     infinite: false,
     speed: 500,
@@ -87,9 +70,9 @@ const Featured = () => {
       <div className='feature'>
         <Slider {...settings}>
           {
-            dummyData.map((item) => {
+            products.map((item) => {
               return (
-               <Card item={item} key={item.id} />
+               <Card item={item} key={item._id} />
               )
             })
           }

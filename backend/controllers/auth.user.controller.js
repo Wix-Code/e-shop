@@ -73,7 +73,7 @@ export const login = async (req, res) => {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production"? true : false,
       sameSite: process.env.NODE_ENV === "production"? "none" : "lax"
-    }).json({ success: true, message: "Logged in successfully", others });
+    }).json({ success: true, message: "Logged in successfully", others, token });
     
   } catch (error) {
     console.log(error)

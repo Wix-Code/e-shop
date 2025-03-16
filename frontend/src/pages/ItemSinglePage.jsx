@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import "./itemsinglepage.css"
 import Featured from '../subpages/Featured'
 import { CiHeart } from "react-icons/ci";
@@ -8,15 +8,29 @@ import Slider from 'react-slick';
 import { createStore } from '../libs/context';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, decCart, incCart } from '../slices/cartSlice';
+import { useParams } from 'react-router-dom';
+import { fetchSingleProduct } from '../slices/productSlice';
 
 const ItemSinglePage = () => {
 
   //const { decCart, incCart } = useContext(createStore)
+  const { product, loading, error } = useSelector((state) => state.product);
+
+  const [img, setImg] = useState(product?.img?.[0])
   const cart = useSelector((state) => state.cart.cart);
   const dispatch = useDispatch();
+  const { id } = useParams();
+  //const { product, loading, error } = useSelector((state) => state.product);
 
-  const image = ["https://ebeosi.com.ng/public/uploads/all/qSySmwv8CDTXfrztGKUagb5JFMeENtfjkoT5a1Go.jpg", "https://ebeosi.com.ng/public/uploads/all/XKC1hMAgPpxs54QmMlOwk9XOfpWsj6x6y3sp7vBQ.jpg", "https://ebeosi.com.ng/public/uploads/all/oCx7Y2R8To7ewEXhtvYFRsfWxhZKjghy6cIJioRa.jpg","https://ebeosi.com.ng/public/uploads/all/MKUDDB8vtJPOHhkwY2VpLZTYynd8EPuf4iLUPQlh.jpg"]
-  const [img, setImg] = useState(image[0])
+  useEffect(() => {
+    dispatch(fetchSingleProduct(id));
+  }, [dispatch, id]);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
+
+  //const image = ["https://ebeosi.com.ng/public/uploads/all/qSySmwv8CDTXfrztGKUagb5JFMeENtfjkoT5a1Go.jpg", "https://ebeosi.com.ng/public/uploads/all/XKC1hMAgPpxs54QmMlOwk9XOfpWsj6x6y3sp7vBQ.jpg", "https://ebeosi.com.ng/public/uploads/all/oCx7Y2R8To7ewEXhtvYFRsfWxhZKjghy6cIJioRa.jpg","https://ebeosi.com.ng/public/uploads/all/MKUDDB8vtJPOHhkwY2VpLZTYynd8EPuf4iLUPQlh.jpg"]
+  
 
   var settings = {
     infinite: true,
@@ -61,11 +75,11 @@ const ItemSinglePage = () => {
       <div className="single_div">
         <div className="single1">
           <div className="set_img">
-            <img src={img} alt="" />
+            <img src={product?.img?.[0]} alt="" />
           </div>
           <div className="set_img1">
             {
-              image.map((img, i) => {
+              product?.img?.map((img, i) => {
                 return (
                   <div className={setImg === img ? "active" : "img_set" }>
                     <img key={i} src={img} alt="" onClick={() => setImg(img)} className={setImg === img ? "select" : "" } />
@@ -76,7 +90,7 @@ const ItemSinglePage = () => {
           </div>
         </div>
         <div className="single2">
-          <h4>Friska Instant Baby and Toddler Cereal with Maize & Pineapple</h4>
+          <h4>{product?.title}</h4>
           <div className="sin_rate">
             <FaStar />
             <FaStar />
@@ -97,7 +111,7 @@ const ItemSinglePage = () => {
           </div>
           <div className="sin_brand">
             <p>Brand</p>
-            <span>HP Laptop</span>
+            <span>{product?.brand}</span>
           </div>
           <div className="sin_add">
             <p>Quantity</p>
@@ -109,7 +123,7 @@ const ItemSinglePage = () => {
           </div>
           <div className="sin_total">
             <p>Total Price</p>
-            <h2>&#8358;{new Intl.NumberFormat('en-US').format(4000)}</h2>
+            <h2>&#8358;{new Intl.NumberFormat('en-US').format(product?.price)}</h2>
           </div>
           <div className="sin_btns">
             <div onClick={() => dispatch(addToCart(item))} className="sin_cart">
@@ -140,8 +154,8 @@ const ItemSinglePage = () => {
                     <div className="review_item" key={item.id}>
                       <img src={item.image} alt="" />
                       <div className="top_div">
-                        <p>{item.name.slice(0, 30)}...</p>
-                        <h4>&#8358;{new Intl.NumberFormat('en-US').format(item.price)}</h4>
+                        <p>{product?.title.slice(0, 30)}...</p>
+                        <h4>&#8358;{new Intl.NumberFormat('en-US').format(product?.price)}</h4>
                     </div>
                     </div>
                   )
@@ -174,7 +188,7 @@ const ItemSinglePage = () => {
           </div>
           <div className="description">
             <h4>Description</h4>
-            <span>Masters Instant Noodles Chicken Flavour Gout Poulet with Vegetables & African Spices 120g.</span>
+            <span>{product?.description}</span>
           </div>
           <div className="description">       
             <h4>Related Products</h4>

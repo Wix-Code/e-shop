@@ -1,11 +1,20 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import Slider from "react-slick";
 import { createStore } from '../libs/context';
 import Card from './Card';
 import { dummyData } from '../dummy/data';
+import { fetchProducts } from '../slices/productSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Drinks = () => {
-  //const { data } = useContext(createStore)
+  const dispatch = useDispatch();
+  const { products, loading, error } = useSelector((state) => state.products);
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
+  //if (loading) return <h2>Loading...</h2>;
+  //if (error) return <h2>Error: {error.message}</h2>;
     
     var settings = {
       infinite: false,
@@ -47,7 +56,7 @@ const Drinks = () => {
       <div className='feature'>
         <Slider {...settings}>
           {
-            dummyData.map((item) => {
+            products.filter((product) => product.cat === "Drinks" ).map((item) => {
               return (
                <Card item={item} key={item.id} />
               )
