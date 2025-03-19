@@ -13,14 +13,14 @@ import { BsCalendar2CheckFill } from "react-icons/bs";
 import { LiaTimesSolid } from "react-icons/lia";
 import MobileNav from './MobileNav';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeFromCart, selectCartTotal } from '../slices/cartSlice';
+import { cartTotalPrice, removeFromCart } from '../slices/cartSlice';
 
 const Navbar = () => {
 
   const cart = useSelector((state) => state.cart.cart);
   const wishlist = useSelector((state) => state.wishlist.wishlist);
   const compare = useSelector((state) => state.compare.compare);
-  const cartTotal = useSelector(selectCartTotal);
+  const cartTotal = useSelector(cartTotalPrice);
   const dispatch = useDispatch();
 
   //const { cart, cartQty, compare, wishlist } = useContext(createStore)
@@ -174,12 +174,12 @@ const Navbar = () => {
             <div className='cart_btn' onClick={() => setCartOpen (!cartOpen)}>
               <FaCartShopping style={{fontSize: "22px"}} />
               <h4>&#8358;{new Intl.NumberFormat('en-US').format(cartTotal)}</h4>
-              <p>({cart.length} Items)</p>
+              <p>({cart?.length} Items)</p>
               {
                 cartOpen && (
                   <div className="cart_scroll">
                     {
-                      cart.length === 0 ? (<div className='nav_face'>
+                      cart?.length === 0 ? (<div className='nav_face'>
                         <CiFaceFrown style={{fontSize: "50px"}} />
                         <h3>Your Cart is empty</h3>
                       </div>) :

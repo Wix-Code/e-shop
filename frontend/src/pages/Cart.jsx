@@ -6,13 +6,13 @@ import { FaTimes } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import CartIcon from '../subpages/CartIcon';
 import { useDispatch, useSelector } from 'react-redux';
-import { decCart, incCart, removeFromCart, selectCartTotal } from "../slices/cartSlice"
+import { cartTotalPrice, decCart, incCart, removeFromCart } from "../slices/cartSlice"
 
 
 const Cart = () => {
 
   //const { cart, cartQty, decCart, incCart, removeFromCart } = useContext(createStore)
-  const cartTotal = useSelector(selectCartTotal);
+  const cartTotal = useSelector(cartTotalPrice);
   const cart = useSelector((state) => state.cart.cart);
   const dispatch = useDispatch();
   console.log(cart)
