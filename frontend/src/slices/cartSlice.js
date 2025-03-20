@@ -85,32 +85,61 @@ const cartSlice = createSlice({
   },
   reducers: {
     addToCart: (state, action) => {
-      const item = action.payload;
-      const existingItem = state.cartItems.find((i) => i.productId === item.productId);
-      if (existingItem) {
-        existingItem.quantity += item.quantity;
+      const { userId, item } = action.payload || {};
+
+      if (!item || !item.productId) return;
+
+      if (userId) {
+        // Authenticated User → Send API request to update DB
+        Api.post(`/cart/increase`, { userId, item });
       } else {
-        state.cartItems.push(item);
+        // Guest User → Save in localStorage
+        const existingItem = state.cartItems.find((i) => i.id === item.id)
+        if (existingItem) {
+          existingItem.quantity += item.quantity;
+        } else {
+          state.cartItems.push(item);
+        }
+        saveCartToLocalStorage(state.cartItems);
       }
-      saveCartToLocalStorage(state.cartItems);
     },
     incCart: (state, action) => {
-      const item = state.cartItems.find((i) => i.productId === action.payload);
+      const { userId, productId } = action.payload;
+      const item = state.cartItems.find((i) => i.productId === productId);
+      
       if (item) {
         item.quantity += 1;
+
+        if (userId) {
+          Api.put(`/cart/increase/${userId}/${productId}`, { quantity: item.quantity });
+        } else {
+          saveCartToLocalStorage(state.cartItems);
+        }
       }
-      saveCartToLocalStorage(state.cartItems);
     },
     decCart: (state, action) => {
-      const item = state.cartItems.find((i) => i.productId === action.payload);
+      const { userId, productId } = action.payload;
+      const item = state.cartItems.find((i) => i.productId === productId);
+
       if (item && item.quantity > 1) {
         item.quantity -= 1;
+
+        if (userId) {
+          Api.put(`/cart/decrease/${userId}/${productId}`, { quantity: item.quantity });
+        } else {
+          saveCartToLocalStorage(state.cartItems);
+        }
       }
-      saveCartToLocalStorage(state.cartItems);
     },
     removeFromCart: (state, action) => {
-      state.cartItems = state.cartItems.filter((i) => i.productId !== action.payload);
-      saveCartToLocalStorage(state.cartItems);
+      const { userId, productId } = action.payload;
+      state.cartItems = state.cartItems.filter((i) => i.productId !== productId);
+
+      if (userId) {
+        Api.delete(`/cart/remove/${userId}/${productId}`);
+      } else {
+        saveCartToLocalStorage(state.cartItems);
+      }
     },
     setCart: (state, action) => {
       state.cartItems = action.payload;

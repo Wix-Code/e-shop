@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './card.css'
 import { FaHeart } from 'react-icons/fa'
 import Slider from "react-slick";
@@ -19,7 +19,39 @@ const Card = ({ item }) => {
   const cart = useSelector((state) => state.cart.cart);
   const compare = useSelector((state) => state.compare.compare);
   const dispatch = useDispatch();
+
+    const user = JSON.parse(localStorage.getItem("user"))
   
+    // Add product to cart (handles both guests & authenticated users)
+    const addToCar = () => {
+      const productId = item._id || item.productId;
+  
+      if (!productId) {
+        console.error("Product ID is missing!");
+        return;
+      }
+  
+      const newCartItem = {
+        productId,
+        title: item.title,
+        price: item.price,
+        img: item.img,
+        quantity: 1,
+      };
+  
+      dispatch(addToCart(newCartItem)); // Add to localStorage first
+  
+      if (user?._id) {
+        dispatch(syncCartToDB(user._id)); // Sync to DB if user is logged in
+      }
+    };
+  
+    // Load cart from DB if user is authenticated
+    useEffect(() => {
+      if (user?._id) {
+        dispatch(fetchCartFromDB(user._id));
+      }
+    }, [user, dispatch]);
   var settings = {
     dots: true,
     infinite: false,
@@ -64,14 +96,14 @@ const Card = ({ item }) => {
   //console.log(item)
   return (
     <div className="cards">
-      <div className='card' key={item.id}>
+      <div className='card' key={item._id}>
         <div className="card_img">
           <img src={item.img?.[0]} alt="" />
           <div className="card_wish">
             <p onClick={() => dispatch(addCompare(item))}><FaCodeCompare /></p>
             <p onClick={() => dispatch(addWishlist(item))}><FaHeart /></p>
           </div>
-          <button onClick={()=>dispatch(addToCart(item))}>Add to cart</button>
+          <button onClick={()=>dispatch(addToCar(item))}>Add to cart</button>
           {item.inStock === "true" ? <h5>outStock</h5> : <h5>inStock</h5>}
         </div>
         <Link to={`/product/${item._id}`}>
