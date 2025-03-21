@@ -3,9 +3,11 @@ import Slider from "react-slick";
 import { createStore } from '../libs/context';
 import Card from './Card';
 import { dummyData } from '../dummy/data';
+import { useSelector } from 'react-redux';
 
 const Baby = () => {
   //const { data } = useContext(createStore)
+  const { products, loading, error } = useSelector((state) => state.products);
     
     var settings = {
       infinite: true,
@@ -50,7 +52,7 @@ const Baby = () => {
       <div className='feature'>
         <Slider {...settings}>
           {
-            dummyData.map((item) => {
+            products.map((item) => {
               return (
                <Card item={item} key={item.id} />
               )
