@@ -25,17 +25,17 @@ const Wishlist = () => {
           {
             wishlist.map((item) => {
               return (
-                <div className='card' key={item.id}>
+                <div className='card' key={item._id}>
                   <div className="card_img">
-                    <img src={item.image} alt="" onClick={() => setOpen(!open)} />
+                    <img src={item.img} alt={item?.title} />
                     <div className="card_wish">
-                      <p onClick={() => dispatch(deleteFromWishlist(item.id))}><MdDelete /></p>
+                      <p onClick={() => dispatch(deleteFromWishlist(item._id))}><MdDelete /></p>
                     </div>
                     <button onClick={()=>dispatch(addToCart(item))}>Add to cart</button>
-                    <h5>{item.instock}</h5>
+                    {item.inStock === "true" ? <h5>outStock</h5> : <h5>inStock</h5>}
                   </div>
-                  <Link to={`/product/${item.id}`}>
-                    <span>{item.name.slice(0, 40)}...</span>
+                  <Link to={`/product/${item._id}`}>
+                    <span>{item?.title?.slice(0, 40)}...</span>
                   </Link>
                   <h3>&#8358;{new Intl.NumberFormat('en-US').format(item?.price)}</h3>
                 </div>

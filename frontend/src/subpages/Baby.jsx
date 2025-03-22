@@ -52,7 +52,7 @@ const Baby = () => {
       <div className='feature'>
         <Slider {...settings}>
           {
-            products.map((item) => {
+            products.filter((product) => product.cat === "Drinks").map((item) => {
               return (
                <Card item={item} key={item.id} />
               )

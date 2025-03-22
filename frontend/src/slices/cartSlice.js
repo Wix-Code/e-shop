@@ -88,6 +88,7 @@ const cartSlice = createSlice({
       const { userId, item } = action.payload || {};
 
       if (!item || !item.productId) return;
+      console.log("item", item)
 
       if (userId) {
         // Authenticated User → Send API request to update DB

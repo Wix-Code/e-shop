@@ -95,8 +95,8 @@ const Card = ({ item }) => {
   };
   //console.log(item)
   return (
-    <div className="cards">
-      <div className='card' key={item._id}>
+    <div className="cards" key={item._id}>
+      <div className='card'>
         <div className="card_img">
           <img src={item.img?.[0]} alt="" />
           <div className="card_wish">
