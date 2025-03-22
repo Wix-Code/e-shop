@@ -9,7 +9,7 @@ const compareSlice = createSlice({
   initialState,
   reducers: {
     addCompare: (state, action) => {
-      const exist = state.compare.find((item) => item.id === action.payload.id);
+      const exist = state.compare.find((item) => item._id === action.payload.id);
       if (!exist) {
         state.compare.push(action.payload);
         localStorage.setItem("compare", JSON.stringify(state.compare));
