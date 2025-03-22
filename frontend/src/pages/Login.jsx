@@ -26,7 +26,7 @@ const Login = () => {
     try {
       const result = await dispatch(loginUser(userData));
       if (result.payload.success === true) {
-        toast(result.payload.message)
+        toast.success(result.payload.message)
         navigate("/")
       } else {
         toast.error(result.payload.message)
