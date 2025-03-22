@@ -7,7 +7,7 @@ export const VerifyToken = async (req, res, next) => {
   const token = req.cookies.accessToken;
 
   if (!token) {
-    res.status(400).json({ success: false, message: "Unverified User" });
+    return res.status(400).json({ success: false, message: "Unverified User" });
   }
   
   try {
