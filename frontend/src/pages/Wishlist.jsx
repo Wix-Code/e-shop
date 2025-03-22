@@ -27,7 +27,7 @@ const Wishlist = () => {
               return (
                 <div className='card' key={item._id}>
                   <div className="card_img">
-                    <img src={item.img} alt={item?.title} />
+                    <img src={item.img?.[0]} alt={item?.title} />
                     <div className="card_wish">
                       <p onClick={() => dispatch(deleteFromWishlist(item._id))}><MdDelete /></p>
                     </div>

@@ -28,18 +28,18 @@ const Compare = () => {
           {
             compare.map((item) => {
               return (
-                <div key={item.id} className='compare2'>
+                <div key={item._id} className='compare2'>
                   <div className="compare_img">
                     <p>Name</p>
-                    <h3>{item.name}</h3>
+                    <h3>{item?.title?.slice(0, 40)}...</h3>
                   </div>
                   <div className="compare_img">
                     <p>Image</p>
-                    <img src={item.image} alt="" />
+                    <img src={item?.img?.[0]} alt="" />
                   </div>
                   <div className="compare_img">
                     <p>Price</p>
-                    <h4>&#8358;{new Intl.NumberFormat('en-US').format(item.price)}</h4>
+                    <h4>&#8358;{new Intl.NumberFormat('en-US').format(item?.price)}</h4>
                   </div>
                   <div className="compare_img">
                     <p>Brand</p>
