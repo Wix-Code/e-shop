@@ -3,7 +3,9 @@ import Api from "../libs/Api";
 import { toast } from 'react-toastify'
 
 const initialState = {
-  wishlist: JSON.parse(localStorage.getItem("wishlist")) || [],
+  wishlist: [],
+  loading: false,
+  error: null, //JSON.parse(localStorage.getItem("wishlist")) || [],
 };
 
 const user = JSON.parse(localStorage.getItem("user")) || {};
@@ -14,7 +16,8 @@ export const fetchWishlist = createAsyncThunk("wishlist/fetchWishlist", async (_
   try {
     if (userId) {
       // ✅ Fetch from API for logged-in users
-      const { data } = await Api.get("/wishlist",{userId});
+      const { data } = await Api.get("/wishlist");
+      console.log(data, "res")
       return data.wishlist || [];
     } else {
       // ✅ Fetch from localStorage for unauthenticated users
@@ -26,6 +29,31 @@ export const fetchWishlist = createAsyncThunk("wishlist/fetchWishlist", async (_
     return rejectWithValue(error.response?.data || "Failed to fetch wishlist");
   }
 });
+
+export const deleteFromWishlist = createAsyncThunk(
+  "wishlist/deleteFromWishlist",
+  async ({ userId, productId }, { rejectWithValue }) => {
+    //const item = action.payload;
+    try {
+      if (userId) {
+        // ✅ API call for logged-in users
+        const { data } = await Api.post("/wishlist/delete", {userId, productId });
+        toast.success(data?.message);
+        return productId; // ✅ Return productId to remove from Redux state
+      } else {
+        // ✅ Remove from localStorage for unauthenticated users
+        let localWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+        localWishlist = localWishlist.filter((item) => item._id !== productId);
+        localStorage.setItem("wishlist", JSON.stringify(localWishlist));
+        toast.success("Item removed from wishlist");
+        return productId;
+      }
+    } catch (error) {
+      console.error("Error deleting wishlist item:", error);
+      return rejectWithValue(error.response?.data || "Failed to delete item");
+    }
+  }
+);
 
 
 const wishlistSlice = createSlice({
@@ -48,6 +76,7 @@ const wishlistSlice = createSlice({
           state.wishlist.push(action.payload);
           localStorage.setItem("wishlist", JSON.stringify(state.wishlist))
           toast.success("Item added to wishlist");
+          
         };
       } else {
         (async () => {
@@ -60,22 +89,59 @@ const wishlistSlice = createSlice({
               price: item.price,
               img: item.img[0]
             });
+            //state.wishlist.push(item); 
             toast.success(data?.message)
+            return item;
             console.log(data, "Wishlist item added to DB");
           } catch (error) {
             console.error("Error adding wishlist item:", error);
-            alert("Item already in wishlist");
+            //alert("Item already in wishlist");
           }
         })();
       }
     },
-    deleteFromWishlist: (state, action) => {
-      state.wishlist = state.wishlist.filter((item) => item._id !== action.payload);
-      localStorage.setItem("wishlist", JSON.stringify(state.wishlist));
-      toast.success("Item removed from wishlist");
-    },
+    /*deleteFromWishlist: (state, action) => {
+      if (!userId) {
+        state.wishlist = state.wishlist.filter((item) => item._id !== action.payload);
+        localStorage.setItem("wishlist", JSON.stringify(state.wishlist));
+        toast.success("Item removed from wishlist");
+      }else{
+        (async () => {
+          const item = action.payload;
+          try {
+            const { data } = await Api.post("/wishlist/delete", {
+              productId: item._id
+            });
+            console.log(data, "res")
+            toast.success(data.message)
+            return data;
+          } catch (error) {
+            console.error("Error deleting wishlist item:", error);
+            //alert("Item not found in wishlist");
+          }
+        })();
+      }
+    }*/
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchWishlist.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchWishlist.fulfilled, (state, action) => {
+        state.loading = false;
+        state.wishlist = action.payload; // ✅ Update Redux state
+      })
+      .addCase(fetchWishlist.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(deleteFromWishlist.fulfilled, (state, action) => {
+        state.wishlist = state.wishlist.filter((item) => item._id !== action.payload);
+      });
   },
 });
 
-export const { addWishlist, deleteFromWishlist } = wishlistSlice.actions;
+export const { addWishlist } = wishlistSlice.actions;
 export default wishlistSlice.reducer;

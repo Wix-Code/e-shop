@@ -1,4 +1,23 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import Api from "../libs/Api";
+
+//API FUNCTIONS
+
+export const addCompareApi = async(data)=>{
+  try {
+      const res=await Api.post("/compare",data)
+      return res.data
+  } catch (error) {
+      throw error.response.data
+  }
+}
+
+export const createWishlistItemAsync=createAsyncThunk('wishlist/createWishlistItemAsync',async(data)=>{
+  const createdItem=await addCompareApi(data)
+  return createdItem
+})
+
+
 
 const initialState = {
   compare: JSON.parse(localStorage.getItem("compare")) || [],
