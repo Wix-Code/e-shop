@@ -67,7 +67,7 @@ export const login = async (req, res) => {
     const { password, ...others} = user._doc
 
     // GENERATE AND SEND JWT TOKEN
-    const token = jwt.sign({ id: user._id },process.env.JWT_SECRET_KEY, { expiresIn : "1h"} )
+    const token = jwt.sign({ id: user._id },process.env.JWT_SECRET_KEY, { expiresIn : "7d"} )
     
     res.cookie("accessToken", token, {
       httpOnly: true,
