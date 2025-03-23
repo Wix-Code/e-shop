@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import Api from "../libs/Api";
+import { fetchWishlist } from "./wishlistSlice";
 
 // Register User
 export const registerUser = createAsyncThunk("auth/register", async (userData, { rejectWithValue }) => {
@@ -17,6 +18,18 @@ export const loginUser = createAsyncThunk("auth/login", async (userData, { rejec
   try {
     const { data } = await Api.post(`/auth/login`, userData);
     localStorage.setItem("user", JSON.stringify(data));
+    if (data?.user) {
+      const userId = data.user._id;
+
+      // ✅ Transfer local wishlist to DB
+      const localWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+      if (localWishlist.length > 0) {
+        await Api.post("/wishlist/push", { userId, wishlistItems: localWishlist });
+        localStorage.removeItem("wishlist"); // ✅ Clear local wishlist
+      }
+
+      dispatch(fetchWishlist(userId)); // ✅ Fetch updated wishlist from DB
+    }
     return data;
   } catch (error) {
     return rejectWithValue(error.response.data);
